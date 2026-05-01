@@ -3,1522 +3,1631 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Gaetano Reale GmbH – Ihr vertrauter Partner für Bauen und Immobilien in Tübingen seit 1999.">
-<title>Gaetano Reale GmbH</title>
+<meta name="description" id="metaDesc" content="Gaetano Reale Immobilien – Exklusive Immobilien in Tübingen.">
+<title id="pageTitle">Gaetano Reale Immobilien</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,200;9..144,0,300;9..144,1,200;9..144,1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
-/* ══════════════════════════════════════
-   DESIGN TOKENS
-══════════════════════════════════════ */
-:root {
-  --black:   #080808;
-  --dark:    #111110;
-  --mid:     #2a2a28;
-  --cream:   #F0E8DC;
-  --cream2:  #E5DDD1;
-  --sand:    #C8B99A;
-  --gold:    #B89A5C;
-  --moss:    #2B3B2A;
-  --white:   #FAFAF8;
-  --rule:    rgba(8,8,8,.09);
-  --rule-w:  rgba(240,232,220,.12);
-  --expo:    cubic-bezier(.16,1,.3,1);
-  --inout:   cubic-bezier(.83,0,.17,1);
+/* ══════════════════ TOKENS ══════════════════ */
+:root{
+  --w:#ffffff;--g0:#f8f8f8;--g1:#f1f1f1;--g2:#e4e4e4;--g3:#c8c8c8;
+  --ink:#111;--ink2:#444;--ink3:#888;
+  --blue:#0071e3;--green:#30d158;--red:#ff3b30;--orange:#ff9f0a;
+  --sh:0 2px 12px rgba(0,0,0,.06);--sh-m:0 8px 32px rgba(0,0,0,.1);--sh-l:0 20px 60px rgba(0,0,0,.15);
+  --expo:cubic-bezier(.22,1,.36,1);
 }
-
-/* ══════════════════════════════════════
-   BASE
-══════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{overflow-x:hidden;scroll-behavior:smooth}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--white);color:var(--black);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--g0);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 img{display:block;max-width:100%}
-input,textarea,select{font-family:inherit;font-size:inherit}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--cream)}
-::-webkit-scrollbar-thumb{background:var(--black)}
+input,textarea,select{font-family:inherit}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--g2);border-radius:4px}
 
-/* ══════════════════════════════════════
-   INTRO / SPLASH
-══════════════════════════════════════ */
-#intro {
-  position: fixed; inset: 0; z-index: 2000;
-  background: var(--black);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
+/* ══════════════════ INTRO ══════════════════ */
+#intro{position:fixed;inset:0;z-index:9000;background:#0d0d0d;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.i-noise{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.i-center{position:relative;text-align:center}
+.i-eyebrow{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:28px;opacity:0;transform:translateY(10px);animation:iup .8s .7s var(--expo) forwards}
+.i-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(60px,11vw,136px);line-height:.9;letter-spacing:-.02em;color:#fff}
+.i-logo .irow{overflow:hidden;display:block}
+.i-logo .iword{display:inline-block;transform:translateY(112%);animation:iword 1.1s var(--expo) forwards}
+.i-logo .irow:nth-child(1) .iword{animation-delay:.45s}
+.i-logo .irow:nth-child(2) .iword{animation-delay:.63s;font-style:italic;color:rgba(255,255,255,.36)}
+.i-sub{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:20px;opacity:0;animation:iup .7s 1.1s var(--expo) forwards}
+.i-progress{position:absolute;bottom:44px;left:50%;transform:translateX(-50%);width:min(240px,55vw)}
+.i-track{height:1px;background:rgba(255,255,255,.08);border-radius:1px;overflow:hidden}
+.i-fill{height:100%;width:0;background:rgba(255,255,255,.3);animation:ifill 2s .6s var(--expo) forwards}
+.i-plabel{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:8px;text-align:right;opacity:0;animation:iup .5s .9s var(--expo) forwards}
+@keyframes iword{to{transform:translateY(0)}}
+@keyframes iup{to{opacity:1;transform:translateY(0)}}
+@keyframes ifill{to{width:100%}}
 
-/* animated grid lines */
-.intro-lines {
-  position: absolute; inset: 0; opacity: 0;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(240,232,220,.03) 0, rgba(240,232,220,.03) 1px, transparent 1px, transparent 120px),
-    repeating-linear-gradient(90deg, rgba(240,232,220,.03) 0, rgba(240,232,220,.03) 1px, transparent 1px, transparent 120px);
-  animation: linesReveal 2s 0.2s var(--expo) forwards;
+/* ══════════════════ NAV ══════════════════ */
+#nav{
+  position:fixed;left:50%;transform:translateX(-50%);z-index:400;
+  width:calc(100% - 48px);max-width:1160px;
+  height:52px;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-radius:999px;
+  transition:background .5s,box-shadow .5s;
+  top:16px;
 }
-@keyframes linesReveal { to { opacity: 1; } }
+#nav.glass{background:rgba(255,255,255,.86);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:0 2px 20px rgba(0,0,0,.07)}
+#nav.dark{background:rgba(13,13,13,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;letter-spacing:-.01em;transition:color .3s}
+#nav.dark .nav-brand{color:#fff}
+.nav-links{display:flex;gap:28px}
+.nav-link{font-size:13px;color:var(--ink2);transition:color .25s;position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--expo)}
+.nav-link:hover{color:var(--ink)}.nav-link:hover::after{transform:scaleX(1);transform-origin:left}
+#nav.dark .nav-link{color:rgba(255,255,255,.6)}.#nav.dark .nav-link:hover{color:#fff}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-cta{font-size:13px;font-weight:500;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;transition:all .3s var(--expo)}
+.nav-cta:hover{background:var(--ink2);transform:translateY(-1px)}
+#nav.dark .nav-cta{background:#fff;color:var(--ink)}
+#nav.dark .nav-cta:hover{background:var(--g1)}
+#adminLoginBtn{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:.18;transition:all .3s;color:var(--ink)}
+#adminLoginBtn:hover{opacity:1;background:var(--g1)}
+#nav.dark #adminLoginBtn{color:#fff}.#nav.dark #adminLoginBtn:hover{background:rgba(255,255,255,.1);opacity:1}
+#burger{display:none;flex-direction:column;gap:5px;width:32px;height:32px;align-items:center;justify-content:center}
+.bl{width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:all .4s var(--expo);transform-origin:center}
+#burger.open .bl:first-child{transform:translateY(6.5px) rotate(45deg)}
+#burger.open .bl:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+#nav.dark #burger{color:#fff}
+#mobMenu{position:fixed;inset:0;z-index:500;background:rgba(255,255,255,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;opacity:0;pointer-events:none;transition:opacity .35s}
+#mobMenu.open{opacity:1;pointer-events:all}
+.mob-a{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--ink);padding:8px 32px;transition:color .2s}
+.mob-a:hover{color:var(--ink3)}
 
-/* Glowing orb */
-.intro-orb {
-  position: absolute; width: 600px; height: 600px; border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(184,154,92,.08) 0%, transparent 70%);
-  animation: orbPulse 4s ease-in-out infinite;
-}
-@keyframes orbPulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.1)} }
+/* ══════════════════ HERO ══════════════════ */
+#hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:#111}
+.h-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=2400&q=90') center/cover;opacity:.55;will-change:transform}
+.h-vig{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.0) 55%)}
+.h-body{position:relative;z-index:2;padding:0 48px 88px;max-width:1200px;margin:0 auto;width:100%}
+.h-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:22px}
+.h-pulse{width:6px;height:6px;border-radius:50%;background:#34d058;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(52,208,88,.5)}50%{opacity:.5;box-shadow:0 0 0 6px rgba(52,208,88,0)}}
+.h-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(56px,9vw,118px);line-height:.9;letter-spacing:-.022em;color:#fff;margin-bottom:24px}
+.h-h em{font-style:italic;color:rgba(255,255,255,.5)}
+.h-h .hw{display:inline-block}
+.h-copy{font-size:clamp(15px,1.3vw,17px);font-weight:300;color:rgba(255,255,255,.65);line-height:1.65;max-width:420px;margin-bottom:32px}
+.h-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-primary{font-size:14px;font-weight:500;background:#fff;color:var(--ink);border-radius:999px;padding:13px 26px;display:inline-flex;align-items:center;gap:8px;transition:all .4s var(--expo);cursor:pointer;border:none}
+.btn-primary:hover{background:var(--g1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.2)}
+.btn-primary svg{transition:transform .3s var(--expo)}.btn-primary:hover svg{transform:translate(2px,-2px)}
+.btn-secondary{font-size:14px;font-weight:400;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:13px 26px;display:inline-flex;align-items:center;gap:8px;transition:all .35s;cursor:pointer;backdrop-filter:blur(8px)}
+.btn-secondary:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.14)}
+.h-scroll{position:absolute;right:48px;bottom:88px;z-index:2;writing-mode:vertical-rl;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);animation:bob 3s ease-in-out infinite}
+.h-scroll::before{content:'';width:1px;height:40px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.25))}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
-.intro-center { position: relative; text-align: center; }
+/* ══════════════════ ABOUT ══════════════════ */
+#about{background:var(--w);padding:80px 48px}
+.about-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center}
+.about-nums{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--g2);border-radius:24px;overflow:hidden}
+.about-cell{background:var(--w);padding:28px 24px;transition:background .3s}.about-cell:hover{background:var(--g0)}
+.about-n{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;line-height:1;letter-spacing:-.02em}
+.about-l{font-size:10px;font-weight:500;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-top:5px}
+.about-text .eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
+.about-headline{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3.5vw,48px);letter-spacing:-.022em;line-height:.95;margin-bottom:22px}
+.about-headline em{font-style:italic}
+.about-p{font-size:16px;font-weight:300;line-height:1.75;color:var(--ink2);margin-bottom:14px}
 
-.intro-eyebrow {
-  font-size: 10px; letter-spacing: .42em; text-transform: uppercase;
-  color: rgba(240,232,220,.38); margin-bottom: 36px;
-  opacity: 0; transform: translateY(10px);
-  animation: fadeUp .8s .7s var(--expo) forwards;
-}
+/* ══════════════════ OBJEKTE ══════════════════ */
+#objekte{background:var(--g0);padding:80px 48px}
+.obj-inner{max-width:1200px;margin:0 auto}
+.obj-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;flex-wrap:wrap;gap:14px}
+.obj-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,50px);font-weight:300;letter-spacing:-.022em;line-height:.95}
+.obj-title em{font-style:italic}
+.tab-row{display:inline-flex;gap:4px;background:var(--w);border-radius:999px;padding:4px;box-shadow:var(--sh);margin-bottom:28px}
+.tab-btn{font-size:13px;font-weight:500;padding:8px 20px;border-radius:999px;color:var(--ink3);transition:all .3s;cursor:pointer;border:none;background:transparent}
+.tab-btn.on{background:var(--ink);color:#fff}.tab-btn:not(.on):hover{color:var(--ink);background:var(--g1)}
+.obj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+.obj-card{background:var(--w);border-radius:22px;overflow:hidden;box-shadow:var(--sh);cursor:pointer;transition:transform .45s var(--expo),box-shadow .45s var(--expo)}
+.obj-card:hover{transform:translateY(-5px);box-shadow:var(--sh-m)}
+.obj-img{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--g2)}
+.obj-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--expo)}
+.obj-card:hover .obj-img img{transform:scale(1.05)}
+.obj-tag{position:absolute;top:12px;left:12px;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);color:var(--ink);padding:4px 11px;border-radius:999px}
+.obj-tag.mieten{background:rgba(17,17,17,.85);color:#fff}
+.obj-tag.reserviert{background:rgba(255,159,10,.9);color:#fff}
+.obj-tag.verkauft{background:rgba(255,59,48,.9);color:#fff}
+.obj-tag-new{position:absolute;top:12px;right:12px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--blue);color:#fff;padding:4px 10px;border-radius:999px}
+.obj-info{padding:18px 20px}
+.obj-loc{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.obj-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;margin-bottom:12px;line-height:1.15}
+.obj-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:11px;border-top:1px solid var(--g1)}
+.obj-price{font-size:19px;font-weight:500;letter-spacing:-.01em}
+.obj-meta{font-size:11px;color:var(--ink3)}
+.obj-empty{grid-column:1/-1;text-align:center;padding:80px;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--ink3)}
 
-.intro-name {
-  font-family: 'Fraunces', serif; font-weight: 200;
-  font-size: clamp(64px, 12vw, 140px);
-  line-height: .88; color: var(--cream);
-  letter-spacing: -.03em; overflow: hidden;
-}
-.intro-name .row { overflow: hidden; display: block; }
-.intro-name .word {
-  display: inline-block;
-  transform: translateY(115%);
-  animation: wordReveal 1.1s var(--expo) forwards;
-}
-.intro-name .row:nth-child(1) .word { animation-delay: .45s; }
-.intro-name .row:nth-child(2) .word {
-  animation-delay: .62s;
-  font-style: italic; font-weight: 200;
-  color: rgba(240,232,220,.5);
-}
+/* ══════════════════ WHY ══════════════════ */
+#why{background:var(--ink);padding:100px 48px}
+.why-inner{max-width:1200px;margin:0 auto}
+.why-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:12px}
+.why-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,5vw,66px);letter-spacing:-.022em;line-height:.92;color:#fff;margin-bottom:56px}
+.why-title em{font-style:italic;color:rgba(255,255,255,.38)}
+.why-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.why-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:34px 28px;transition:all .4s var(--expo)}
+.why-card:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.12);transform:translateY(-4px)}
+.why-icon{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:transform .4s var(--expo)}
+.why-card:hover .why-icon{transform:scale(1.08)}
+.why-h{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:10px}
+.why-p{font-size:14px;font-weight:300;line-height:1.7;color:rgba(255,255,255,.5)}
 
-.intro-tagline {
-  margin-top: 28px; font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
-  color: rgba(240,232,220,.38);
-  opacity: 0; transform: translateY(10px);
-  animation: fadeUp .8s 1.1s var(--expo) forwards;
-}
+/* ══════════════════ TESTIMONIAL ══════════════════ */
+#testimonial{background:var(--g0);padding:100px 48px}
+.test-wrap{max-width:720px;margin:0 auto;text-align:center}
+.test-stars{font-size:22px;letter-spacing:5px;color:var(--g3);margin-bottom:24px}
+.test-q{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.8vw,34px);font-weight:300;font-style:italic;color:var(--ink);line-height:1.42;margin-bottom:20px}
+.test-attr{font-size:12px;color:var(--ink3);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
 
-/* Loading bar */
-.intro-bar-wrap {
-  position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
-  width: min(300px, 60vw);
-}
-.intro-bar-track { height: 1px; background: rgba(240,232,220,.1); }
-.intro-bar-fill {
-  height: 100%; width: 0; background: rgba(240,232,220,.45);
-  animation: barFill 2.2s .5s var(--expo) forwards;
-}
-@keyframes barFill { to { width: 100%; } }
-.intro-bar-label {
-  margin-top: 10px; font-size: 9px; letter-spacing: .32em; text-transform: uppercase;
-  color: rgba(240,232,220,.26); text-align: right;
-  opacity: 0; animation: fadeUp .6s .9s var(--expo) forwards;
-}
+/* ══════════════════ KONTAKT ══════════════════ */
+#kontakt{background:var(--w);padding:100px 48px}
+.kt-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:88px}
+.kt-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,4vw,50px);letter-spacing:-.022em;line-height:.92;margin-bottom:36px}
+.kt-title em{font-style:italic}
+.kf-g{margin-bottom:16px}
+.kf-row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kf-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:6px}
+.kf-input{width:100%;background:var(--g0);border:1.5px solid var(--g2);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--ink);transition:border-color .25s,background .25s;font-family:inherit}
+.kf-input:focus{outline:none;border-color:var(--ink);background:var(--w)}
+.kf-input::placeholder{color:var(--ink3)}
+textarea.kf-input{resize:none;min-height:108px}
+.kf-note{font-size:11px;color:var(--ink3);margin-bottom:16px;line-height:1.55}
+.kf-btn{width:100%;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:500;cursor:pointer;transition:all .4s var(--expo);font-family:inherit}
+.kf-btn:hover{background:var(--ink2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.14)}
+.kt-info{padding-top:4px}
+.kt-eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:24px}
+.ki-row{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--g1)}
+.ki-row:last-child{border-bottom:none}
+.ki-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px}
+.ki-val{font-size:17px;font-weight:300;color:var(--ink);line-height:1.5}
+.ki-val a{transition:color .2s}.ki-val a:hover{color:var(--ink3)}
+.ki-hrs .hr-r{display:flex;justify-content:space-between;font-size:14px;font-weight:300;padding:6px 0;border-bottom:1px solid var(--g1);color:var(--ink2)}
 
-@keyframes wordReveal { to { transform: translateY(0); } }
-@keyframes fadeUp     { to { opacity: 1; transform: translateY(0); } }
+/* ══════════════════ STATUS BADGE ══════════════════ */
+#statusBadge{position:fixed;bottom:24px;right:24px;z-index:300;background:var(--w);border-radius:999px;padding:9px 16px;box-shadow:var(--sh-m);display:flex;align-items:center;gap:7px;font-size:12px;font-weight:500}
+.sb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sb-dot.open{background:var(--green)}.sb-dot.closed{background:var(--red)}.sb-dot.busy{background:var(--orange)}
 
-/* ══════════════════════════════════════
-   NAV
-══════════════════════════════════════ */
-#nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-  height: 64px; padding: 0 52px;
-  display: flex; align-items: center; justify-content: space-between;
-  transition: background .6s ease, box-shadow .6s ease;
-}
-#nav.solid {
-  background: rgba(250,250,248,.88);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  box-shadow: 0 1px 0 var(--rule);
-}
-#nav.dark-mode {
-  background: rgba(8,8,8,.75);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-}
+/* ══════════════════ FOOTER ══════════════════ */
+footer{background:var(--ink);padding:60px 48px 44px}
+.ft-inner{max-width:1200px;margin:0 auto}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:#fff;margin-bottom:8px}
+.ft-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.35);line-height:1.7;margin-bottom:44px}
+.ft-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08);margin-bottom:36px}
+.ft-col-h{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:14px}
+.ft-col a{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);display:block;padding:4px 0;transition:color .2s}
+.ft-col a:hover{color:#fff}
+.ft-bot{padding-top:22px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.24);flex-wrap:wrap;gap:8px}
 
-.nav-logo {
-  display: flex; align-items: center; gap: 11px;
-  font-family: 'Fraunces', serif; font-size: 17px;
-  font-weight: 300; letter-spacing: -.02em;
-}
-.nav-logo-mark {
-  width: 32px; height: 32px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 300;
-  background: var(--black); color: var(--cream);
-  transition: transform .7s var(--expo), background .4s;
-}
-#nav.dark-mode .nav-logo-mark { background: var(--cream); color: var(--black); }
-.nav-logo:hover .nav-logo-mark { transform: rotate(180deg); }
-.nav-logo-text { line-height: 1.1; }
-.nav-logo-sub { display: block; font-family: 'DM Sans', sans-serif; font-size: 8px; letter-spacing: .22em; text-transform: uppercase; opacity: .42; margin-top: 1px; }
+/* ══════════════════ OBJEKT MODAL ══════════════════ */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--w);border-radius:22px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.2);animation:mIn .4s var(--expo)}
+@keyframes mIn{from{transform:translateY(18px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+/* Objekt detail */
+#objDetailModal .modal-box{max-width:720px;padding:0}
+.om-gallery{border-radius:22px 22px 0 0;overflow:hidden}
+.om-main-img{aspect-ratio:16/9;overflow:hidden;background:var(--g2)}
+.om-main-img img{width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+.om-thumbs{display:flex;gap:8px;padding:10px 18px;background:var(--g1);overflow-x:auto}
+.om-thumbs:empty{display:none}
+.om-thumb{width:60px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;cursor:pointer;opacity:.5;transition:opacity .25s;border:2px solid transparent}
+.om-thumb.active{opacity:1;border-color:var(--ink)}
+.om-thumb img{width:100%;height:100%;object-fit:cover}
+.om-body{padding:26px}
+.om-chips-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.om-chip{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;background:var(--g1);color:var(--ink3);padding:4px 11px;border-radius:999px}
+.om-chip.st-verfügbar{background:rgba(48,209,88,.1);color:#1a6e2e}
+.om-chip.st-reserviert{background:rgba(255,159,10,.1);color:#8a5000}
+.om-chip.st-verkauft{background:rgba(255,59,48,.1);color:var(--red)}
+.om-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:6px}
+.om-loc{font-size:13px;color:var(--ink3);margin-bottom:18px;display:flex;align-items:center;gap:5px}
+.om-facts{display:flex;background:var(--g0);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.om-fact{flex:1;padding:13px;text-align:center;border-right:1px solid var(--g2)}
+.om-fact:last-child{border-right:none}
+.om-fact-n{font-size:18px;font-weight:500;margin-bottom:2px}
+.om-fact-l{font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
+.om-desc{font-size:14px;font-weight:300;line-height:1.72;color:var(--ink2);margin-bottom:16px}
+.om-features{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.om-feature{font-size:11px;font-weight:500;background:var(--g0);color:var(--ink2);padding:4px 11px;border-radius:999px;border:1px solid var(--g2)}
+.om-price{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;letter-spacing:-.02em;margin-bottom:18px}
+.om-footer{display:flex;gap:10px}
+.om-cta{flex:1;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:500;cursor:pointer;transition:all .3s;text-align:center;font-family:inherit}
+.om-cta:hover{background:var(--ink2);transform:translateY(-1px)}
+.om-close-btn{background:var(--g1);color:var(--ink);border:none;border-radius:12px;padding:13px 18px;font-size:14px;cursor:pointer;transition:all .3s;font-family:inherit}
+.om-close-btn:hover{background:var(--g2)}
 
-.nav-mid { display: flex; gap: 36px; }
-.nav-a {
-  font-size: 12.5px; opacity: .6;
-  position: relative; transition: opacity .3s;
-}
-.nav-a::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 1px; background: currentColor;
-  transform: scaleX(0); transform-origin: right;
-  transition: transform .5s var(--expo);
-}
-.nav-a:hover { opacity: 1; }
-.nav-a:hover::after { transform: scaleX(1); transform-origin: left; }
+/* ══════════════════════════════════════════════════
+   ADMIN PANEL — COMPLETE REDESIGN
+══════════════════════════════════════════════════ */
 
-.nav-right { display: flex; align-items: center; gap: 14px; }
-.nav-pill {
-  font-size: 11.5px; font-weight: 500;
-  border: 1px solid currentColor; border-radius: 100px;
-  padding: 8px 20px; opacity: .78;
-  transition: all .45s var(--expo);
-}
-.nav-pill:hover { background: var(--black); color: var(--cream); opacity: 1; border-color: var(--black); }
-#nav.dark-mode .nav-pill:hover { background: var(--cream); color: var(--black); border-color: var(--cream); }
+/* LOGIN MODAL */
+#loginModal .modal-box{max-width:400px}
+.login-pad{padding:40px}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;margin-bottom:6px}
+.login-sub{font-size:13px;color:var(--ink3);margin-bottom:32px}
+.login-field{margin-bottom:16px}
+.login-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:6px}
+.login-input{width:100%;border:1.5px solid var(--g2);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--ink);background:var(--g0);transition:border-color .25s,background .25s;font-family:inherit}
+.login-input:focus{outline:none;border-color:var(--ink);background:var(--w)}
+.login-error{font-size:12px;color:var(--red);background:rgba(255,59,48,.08);border-radius:8px;padding:9px 12px;margin-top:8px;display:none}
+.login-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:24px}
+.login-cancel{font-size:13px;padding:9px 18px;border-radius:999px;border:1.5px solid var(--g2);cursor:pointer;color:var(--ink);background:transparent;transition:all .25s;font-family:inherit}
+.login-cancel:hover{background:var(--g1)}
+.login-submit{font-size:13px;padding:9px 22px;border-radius:999px;background:var(--ink);color:#fff;cursor:pointer;border:none;font-weight:500;transition:all .25s;font-family:inherit}
+.login-submit:hover{background:var(--ink2)}
 
-#adminTrigger {
-  width: 30px; height: 30px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  opacity: .22; transition: opacity .3s;
+/* ADMIN GREETING SCREEN */
+#adminGreeting{
+  position:fixed;inset:0;z-index:7000;
+  background:var(--ink);
+  display:none;align-items:center;justify-content:center;
+  flex-direction:column;
+  text-align:center;
 }
-#adminTrigger:hover { opacity: 1; }
+#adminGreeting.show{display:flex}
+.ag-time{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px;opacity:0;animation:iup .6s .2s var(--expo) forwards}
+.ag-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,7vw,80px);line-height:.92;letter-spacing:-.02em;color:#fff;margin-bottom:12px;opacity:0;animation:iup .8s .4s var(--expo) forwards}
+.ag-sub{font-size:13px;color:rgba(255,255,255,.35);opacity:0;animation:iup .6s .7s var(--expo) forwards}
+.ag-line{width:1px;height:0;background:rgba(255,255,255,.12);margin:32px auto;animation:agLine .8s .5s var(--expo) forwards}
+@keyframes agLine{to{height:60px}}
 
-#hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  width: 34px; height: 34px; align-items: center; justify-content: center;
+/* ADMIN PANEL MAIN */
+#adminPanel{
+  position:fixed;inset:0;z-index:6000;
+  display:none;flex-direction:column;
+  background:var(--g0);
+  overflow:hidden;
 }
-.hbar { width: 21px; height: 1px; background: currentColor; transition: all .45s var(--expo); transform-origin: center; }
-#hamburger.open .hbar:first-child { transform: translateY(6px) rotate(45deg); }
-#hamburger.open .hbar:last-child  { transform: translateY(-6px) rotate(-45deg); }
+#adminPanel.show{display:flex}
 
-/* Mobile overlay menu */
-#mob-menu {
-  position: fixed; top: 0; right: 0; bottom: 0; width: 85%; max-width: 380px;
-  background: var(--black); color: var(--cream); z-index: 600;
-  padding: 100px 44px 56px;
-  transform: translateX(100%);
-  transition: transform .7s var(--inout);
+/* Admin Header */
+.adm-header{
+  height:56px;flex-shrink:0;
+  background:var(--w);border-bottom:1px solid var(--g2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
 }
-#mob-menu.open { transform: none; }
-.mob-a {
-  display: block; font-family: 'Fraunces', serif;
-  font-size: 42px; font-weight: 200; line-height: 1.25;
-  border-bottom: 1px solid rgba(240,232,220,.08);
-  padding: 16px 0; letter-spacing: -.02em; opacity: .75;
-  transition: opacity .3s;
-}
-.mob-a:hover { opacity: 1; }
-.mob-foot { position: absolute; bottom: 40px; left: 44px; right: 44px; font-size: 9px; letter-spacing: .28em; text-transform: uppercase; opacity: .28; }
+.adm-header-left{display:flex;align-items:center;gap:16px}
+.adm-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;letter-spacing:-.01em}
+.adm-status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:adot 2s infinite;flex-shrink:0}
+@keyframes adot{0%,100%{opacity:1}50%{opacity:.3}}
+.adm-header-right{display:flex;align-items:center;gap:10px}
+.adm-view-site{font-size:12px;font-weight:500;color:var(--ink2);background:var(--g1);border-radius:999px;padding:6px 14px;cursor:pointer;border:none;transition:all .25s;font-family:inherit}
+.adm-view-site:hover{background:var(--g2)}
+.adm-logout{font-size:12px;color:var(--ink3);cursor:pointer;transition:color .25s;border:none;background:none;padding:4px 8px;font-family:inherit}
+.adm-logout:hover{color:var(--ink)}
 
-/* ══════════════════════════════════════
-   HERO
-══════════════════════════════════════ */
-#hero {
-  position: relative; min-height: 100svh;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  overflow: hidden; color: var(--cream);
-  background: var(--black);
-}
-.hero-img {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(8,8,8,.2) 0%, rgba(8,8,8,.72) 100%),
-    url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=2400&q=90') center 35% / cover;
-  will-change: transform;
-}
-.hero-grain {
-  position: absolute; inset: 0; pointer-events: none; opacity: .055;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+/* Admin Body */
+.adm-body{display:flex;flex:1;overflow:hidden}
 
-.hero-body {
-  position: relative; z-index: 2;
-  padding: 0 52px 68px; max-width: 1440px; margin: 0 auto; width: 100%;
+/* Sidebar */
+.adm-sidebar{
+  width:210px;flex-shrink:0;
+  background:var(--w);border-right:1px solid var(--g2);
+  padding:16px 10px;overflow-y:auto;
+  display:flex;flex-direction:column;gap:2px;
 }
+.adm-nav-item{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 14px;font-size:13px;cursor:pointer;
+  transition:all .2s;color:var(--ink2);
+  border:none;background:none;width:100%;text-align:left;
+  border-radius:10px;
+}
+.adm-nav-item:hover{background:var(--g1);color:var(--ink)}
+.adm-nav-item.active{background:var(--ink);color:#fff}
+.adm-nav-sep{height:1px;background:var(--g2);margin:8px 4px}
 
-.hero-tag {
-  font-size: 10px; letter-spacing: .38em; text-transform: uppercase;
-  color: rgba(240,232,220,.48); margin-bottom: 32px;
-  display: flex; align-items: center; gap: 12px;
-}
-.hero-live-dot {
-  width: 6px; height: 6px; border-radius: 50%; background: #4dff78;
-  animation: livePulse 2.2s infinite;
-}
-@keyframes livePulse {
-  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(77,255,120,.4); }
-  50% { opacity: .6; box-shadow: 0 0 0 6px rgba(77,255,120,0); }
-}
-
-.hero-headline {
-  font-family: 'Fraunces', serif; font-weight: 200;
-  font-size: clamp(54px, 9.5vw, 136px);
-  line-height: .9; letter-spacing: -.03em;
-  margin-bottom: 52px;
-}
-.hero-headline .hl  { display: block; overflow: hidden; }
-.hero-headline .hw  { display: inline-block; }
-.hero-headline .hem { font-style: italic; color: rgba(240,232,220,.55); }
-
-.hero-lower {
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 40px; align-items: flex-end;
-}
-.hero-copy {
-  font-size: clamp(14px, 1.35vw, 17px); line-height: 1.68;
-  color: rgba(240,232,220,.72); max-width: 400px;
-}
-.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-
-/* CTA Buttons */
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12.5px; font-weight: 500;
-  border-radius: 100px; padding: 13px 26px;
-  cursor: pointer; transition: all .5s var(--expo);
-  position: relative; overflow: hidden;
-}
-.btn svg { transition: transform .4s var(--expo); }
-.btn-solid { background: var(--cream); color: var(--black); border: none; }
-.btn-solid::before {
-  content: ''; position: absolute; inset: 0; border-radius: 100px;
-  background: var(--moss); transform: scaleX(0); transform-origin: right;
-  transition: transform .55s var(--expo); z-index: 0;
-}
-.btn-solid:hover::before { transform: scaleX(1); transform-origin: left; }
-.btn-solid:hover { color: var(--cream); }
-.btn-solid:hover svg { transform: translate(3px,-3px); }
-.btn-solid > * { position: relative; z-index: 1; }
-.btn-outline-w { background: transparent; color: var(--cream); border: 1px solid rgba(240,232,220,.3); }
-.btn-outline-w:hover { border-color: var(--cream); background: rgba(240,232,220,.07); }
-.btn-outline-d { background: transparent; color: var(--black); border: 1px solid var(--rule); }
-.btn-outline-d:hover { background: var(--black); color: var(--cream); border-color: var(--black); }
-
-.hero-scroll-hint {
-  position: absolute; bottom: 64px; right: 52px; z-index: 2;
-  writing-mode: vertical-rl; font-size: 9px; letter-spacing: .34em; text-transform: uppercase;
-  color: rgba(240,232,220,.35); display: flex; flex-direction: column; align-items: center; gap: 10px;
-  animation: scrollAnim 2.8s ease-in-out infinite;
-}
-@keyframes scrollAnim { 0%,100%{transform:translateY(0)}50%{transform:translateY(9px)} }
-.hero-scroll-hint::before {
-  content: ''; width: 1px; height: 50px;
-  background: linear-gradient(to bottom, transparent, rgba(240,232,220,.3));
-}
-
-/* ══════════════════════════════════════
-   MARQUEE
-══════════════════════════════════════ */
-.ticker {
-  background: var(--black); overflow: hidden;
-  border-top: 1px solid rgba(240,232,220,.06);
-  border-bottom: 1px solid rgba(240,232,220,.06);
-  padding: 22px 0;
-}
-.ticker-inner {
-  display: flex; width: max-content;
-  animation: ticker 40s linear infinite;
-  font-family: 'Fraunces', serif; font-weight: 200;
-  font-size: 28px; letter-spacing: -.01em;
-  color: rgba(240,232,220,.62); white-space: nowrap;
-}
-@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.ticker-item { padding: 0 40px; }
-.ticker-sep { color: var(--gold); font-size: 14px; align-self: center; }
-
-/* ══════════════════════════════════════
-   SECTIONS SHARED
-══════════════════════════════════════ */
-.section { padding: 120px 52px; }
-.section-inner { max-width: 1440px; margin: 0 auto; }
-.section-tag {
-  font-size: 9px; letter-spacing: .4em; text-transform: uppercase;
-  opacity: .4; margin-bottom: 28px;
-  display: flex; align-items: center; gap: 14px;
-}
-.section-tag::before { content: ''; width: 26px; height: 1px; background: currentColor; }
-.h2 {
-  font-family: 'Fraunces', serif; font-weight: 200;
-  font-size: clamp(42px, 6vw, 82px);
-  line-height: .92; letter-spacing: -.028em;
-}
-.h2 em { font-style: italic; }
-
-/* Scroll reveal */
-.reveal { opacity: 0; transform: translateY(38px); transition: opacity 1s var(--expo), transform 1s var(--expo); }
-.reveal.in { opacity: 1; transform: none; }
-.d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; }
-.d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
-
-/* ══════════════════════════════════════
-   ÜBER
-══════════════════════════════════════ */
-.ueber { background: var(--white); }
-.ueber-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: start;
-}
-.ueber-img-wrap {
-  position: relative; overflow: hidden;
-  border-radius: 3px; aspect-ratio: 4/5;
-}
-.ueber-img-wrap img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 1.4s var(--expo);
-}
-.ueber-img-wrap:hover img { transform: scale(1.05); }
-.ueber-badge {
-  position: absolute; bottom: 24px; left: 24px;
-  background: rgba(8,8,8,.9); backdrop-filter: blur(12px);
-  color: var(--cream); padding: 14px 18px; border-radius: 3px;
-  font-size: 10px;
-}
-.ueber-badge strong {
-  font-family: 'Fraunces', serif; font-size: 30px; font-weight: 200;
-  display: block; line-height: 1; margin-bottom: 4px;
-}
-.ueber-body { font-size: 15px; line-height: 1.8; color: var(--mid); margin: 30px 0; }
-.ueber-body p + p { margin-top: 16px; }
-
-.stat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 52px; }
-.stat-cell { background: var(--white); padding: 28px 24px; }
-.stat-n { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 200; line-height: 1; letter-spacing: -.03em; }
-.stat-l { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; opacity: .5; margin-top: 6px; }
-
-/* ══════════════════════════════════════
-   LEISTUNGEN
-══════════════════════════════════════ */
-.leist { background: var(--cream2); }
-.leist-head {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; margin-bottom: 72px; align-items: end;
-}
-.leist-sub { font-size: 15px; line-height: 1.72; color: var(--mid); }
-.svc-list { border-top: 1px solid var(--rule); }
-.svc {
-  display: grid; grid-template-columns: 56px 1fr 300px 44px;
-  gap: 32px; align-items: center;
-  padding: 30px 0; border-bottom: 1px solid var(--rule);
-  position: relative; cursor: pointer;
-}
-.svc::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, var(--moss), var(--black));
-  opacity: 0; transition: opacity .55s var(--expo); border-radius: 2px;
-}
-.svc > * { position: relative; z-index: 1; }
-.svc:hover::before { opacity: 1; }
-.svc:hover .svc-num, .svc:hover .svc-name, .svc:hover .svc-desc { color: var(--cream); }
-.svc:hover .svc-icon { color: var(--cream); transform: translate(5px,-5px); }
-.svc-num { font-family:'Fraunces',serif; font-size: 22px; font-weight: 200; opacity: .25; transition: color .4s; }
-.svc-name { font-family:'Fraunces',serif; font-size: clamp(22px,2.8vw,38px); font-weight: 200; letter-spacing: -.022em; line-height: 1.05; transition: color .4s; }
-.svc-desc { font-size: 12.5px; line-height: 1.7; color: var(--mid); transition: color .4s; }
-.svc-icon { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; transition: all .5s var(--expo); color: var(--mid); margin-left: auto; }
-
-/* ══════════════════════════════════════
-   OBJEKTE
-══════════════════════════════════════ */
-.objekte { background: var(--white); }
-.obj-topbar { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; gap: 32px; flex-wrap: wrap; }
-.obj-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
-.flt {
-  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
-  border: 1px solid var(--rule); border-radius: 100px;
-  padding: 8px 18px; cursor: pointer; transition: all .35s;
-  background: transparent; color: var(--mid);
-}
-.flt.on, .flt:hover { background: var(--black); color: var(--cream); border-color: var(--black); }
-.obj-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(330px,1fr)); gap: 32px; }
-.obj-card {
-  cursor: pointer;
-  transition: transform .55s var(--expo);
-}
-.obj-card:hover { transform: translateY(-7px); }
-.obj-thumb {
-  aspect-ratio: 4/3; overflow: hidden;
-  background: var(--cream2); border-radius: 3px; position: relative;
-}
-.obj-thumb img {
-  width:100%;height:100%;object-fit:cover;
-  transition: transform 1.3s var(--expo);
-}
-.obj-card:hover .obj-thumb img { transform: scale(1.06); }
-.obj-status {
-  position: absolute; top: 14px; left: 14px;
-  background: rgba(8,8,8,.82); backdrop-filter: blur(8px);
-  color: var(--cream); font-size: 8px; letter-spacing: .26em; text-transform: uppercase;
-  padding: 5px 10px; border-radius: 2px;
-}
-.obj-status.sold { background: rgba(43,59,42,.9); }
-.obj-status.res  { background: rgba(184,154,92,.9); color: var(--black); }
-.obj-info { padding: 18px 0 4px; }
-.obj-loc { font-size: 9px; letter-spacing: .26em; text-transform: uppercase; opacity: .46; margin-bottom: 6px; }
-.obj-name { font-family:'Fraunces',serif; font-size: 22px; font-weight: 200; letter-spacing: -.02em; margin-bottom: 10px; }
-.obj-row { display: flex; justify-content: space-between; align-items: center; }
-.obj-price { font-family:'Fraunces',serif; font-size: 20px; font-weight: 200; letter-spacing: -.02em; }
-.obj-meta { font-size: 10px; opacity: .5; }
-.obj-empty { grid-column:1/-1; text-align:center; padding: 80px 20px; font-family:'Fraunces',serif; font-size:24px; font-weight:200; font-style:italic; opacity:.38; }
-
-/* ══════════════════════════════════════
-   VERTRAUEN
-══════════════════════════════════════ */
-.vertr { background: var(--black); color: var(--cream); }
-.vertr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
-.vertr-quote { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--rule-w); }
-.vertr-stars { font-size: 18px; color: var(--gold); letter-spacing: 2px; margin-bottom: 18px; }
-.vertr-q { font-family:'Fraunces',serif; font-size: clamp(20px,2.2vw,28px); font-weight: 200; line-height: 1.48; font-style: italic; }
-.vertr-attr { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; opacity: .38; margin-top: 16px; }
-
-.pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule-w); border: 1px solid var(--rule-w); }
-.pillar { background: var(--black); padding: 38px 32px; transition: background .4s; }
-.pillar:hover { background: var(--dark); }
-.pillar-n { font-family:'Fraunces',serif; font-size: 44px; font-weight: 200; opacity: .15; line-height: 1; margin-bottom: 20px; }
-.pillar-h { font-family:'Fraunces',serif; font-size: 22px; font-weight: 300; margin-bottom: 10px; }
-.pillar-p { font-size: 12.5px; line-height: 1.75; opacity: .55; }
-
-/* ══════════════════════════════════════
-   KONTAKT
-══════════════════════════════════════ */
-.kontakt { background: var(--moss); color: var(--cream); }
-.kt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; margin-top: 60px; }
-.kf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.kf-group { margin-bottom: 28px; }
-.kf-label { font-size: 8px; letter-spacing: .32em; text-transform: uppercase; opacity: .46; display: block; margin-bottom: 10px; }
-.kf-inp {
-  width: 100%; background: transparent;
-  border: none; border-bottom: 1px solid rgba(240,232,220,.18);
-  padding: 11px 0; color: var(--cream); font-size: 14px;
-  transition: border-color .4s;
-}
-.kf-inp:focus { outline: none; border-bottom-color: var(--cream); }
-.kf-inp::placeholder { color: rgba(240,232,220,.3); }
-textarea.kf-inp { resize: none; min-height: 110px; }
-.kf-note { font-size: 10px; opacity: .38; margin-bottom: 16px; }
-.kf-submit {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--cream); color: var(--black);
-  border: none; border-radius: 100px; padding: 14px 30px;
-  font-size: 12.5px; font-weight: 500; cursor: pointer;
-  position: relative; overflow: hidden;
-  transition: all .5s var(--expo);
-}
-.kf-submit::before {
-  content: ''; position: absolute; inset: 0; border-radius: 100px;
-  background: rgba(255,255,255,.15);
-  transform: scaleX(0); transform-origin: right;
-  transition: transform .5s var(--expo);
-}
-.kf-submit:hover::before { transform: scaleX(1); transform-origin: left; }
-.kf-submit span, .kf-submit svg { position: relative; z-index: 1; }
-
-.ki-block { margin-bottom: 36px; }
-.ki-lbl { font-size: 8px; letter-spacing: .32em; text-transform: uppercase; opacity: .38; margin-bottom: 10px; }
-.ki-val { font-family:'Fraunces',serif; font-size: 20px; font-weight: 200; line-height: 1.5; }
-.ki-val a { color: inherit; transition: opacity .3s; }
-.ki-val a:hover { opacity: .65; }
-.ki-hours { margin-bottom: 30px; }
-.ki-row { display: flex; justify-content: space-between; font-size: 12.5px; padding: 7px 0; border-bottom: 1px solid rgba(240,232,220,.1); opacity: .65; }
-.ki-map { aspect-ratio: 4/3; overflow: hidden; border-radius: 3px; border: 1px solid rgba(240,232,220,.1); margin-top: 8px; }
-.ki-map iframe { width:100%;height:100%;border:0; filter: invert(.92) hue-rotate(180deg) saturate(.4); }
-
-/* ══════════════════════════════════════
-   FOOTER
-══════════════════════════════════════ */
-footer { background: var(--black); color: var(--cream); padding: 84px 52px 52px; }
-.ft-wordmark {
-  font-family: 'Fraunces', serif; font-weight: 200;
-  font-size: clamp(56px, 14vw, 180px);
-  line-height: .85; letter-spacing: -.035em; margin-bottom: 60px;
-}
-.ft-wordmark em { font-style: italic; opacity: .3; }
-.ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-top: 40px; border-top: 1px solid var(--rule-w); }
-.ft-col-h { font-size: 8px; letter-spacing: .32em; text-transform: uppercase; opacity: .36; margin-bottom: 18px; }
-.ft-col p, .ft-col a { font-size: 12.5px; opacity: .58; line-height: 2.1; display: block; transition: opacity .3s; }
-.ft-col a:hover { opacity: 1; }
-.ft-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 30px; margin-top: 44px; border-top: 1px solid var(--rule-w); font-size: 10px; opacity: .3; flex-wrap: wrap; gap: 8px; }
-
-/* ══════════════════════════════════════
-   MODAL SHELL
-══════════════════════════════════════ */
-.overlay {
-  position: fixed; inset: 0; z-index: 900;
-  background: rgba(8,8,8,.65); backdrop-filter: blur(16px);
-  display: none; align-items: center; justify-content: center; padding: 20px;
-}
-.overlay.open { display: flex; }
-.mbox {
-  background: var(--white); border-radius: 12px; width: 100%;
-  box-shadow: 0 48px 96px rgba(0,0,0,.32);
-  animation: mboxIn .5s var(--expo);
-}
-@keyframes mboxIn { from{transform:translateY(22px);opacity:0} to{transform:none;opacity:1} }
-.mpad { padding: 48px; }
-
-/* Login modal */
-#loginModal .mbox { max-width: 400px; }
-.mbox-title { font-family:'Fraunces',serif; font-size:30px; font-weight:200; margin-bottom:5px; letter-spacing:-.02em; }
-.mbox-sub { font-size:11px; opacity:.42; margin-bottom:36px; }
-.mf { margin-bottom: 20px; }
-.ml { font-size:8px; letter-spacing:.3em; text-transform:uppercase; opacity:.44; display:block; margin-bottom:8px; }
-.mi { width:100%; border:1px solid var(--rule); border-radius:7px; padding:12px 16px; font-size:13.5px; color:var(--black); background:var(--white); transition:border-color .3s; }
-.mi:focus { outline:none; border-color:var(--black); }
-.merr { font-size:11px; color:#c33; margin-top:7px; display:none; }
-.m-btns { display:flex; gap:10px; margin-top:26px; justify-content:flex-end; }
-.m-cancel { font-size:12px; padding:10px 20px; border-radius:100px; border:1px solid var(--rule); cursor:pointer; color:var(--black); background:transparent; transition:all .3s; }
-.m-cancel:hover { background:var(--cream2); }
-.m-submit { font-size:12px; padding:10px 24px; border-radius:100px; background:var(--black); color:var(--cream); cursor:pointer; border:none; transition:all .3s; }
-.m-submit:hover { background:var(--moss); }
-
-/* Objekt detail modal */
-#objDetailModal .mbox { max-width:700px; padding:0; overflow:hidden; }
-.om-photo { aspect-ratio:16/9; background:var(--cream2); overflow:hidden; }
-.om-photo img { width:100%;height:100%;object-fit:cover; }
-.om-body { padding:36px; }
-.om-loc { font-size:9px; letter-spacing:.26em; text-transform:uppercase; opacity:.44; margin-bottom:6px; }
-.om-name { font-family:'Fraunces',serif; font-size:32px; font-weight:200; letter-spacing:-.022em; margin-bottom:18px; }
-.om-facts { display:flex; gap:24px; flex-wrap:wrap; margin-bottom:18px; }
-.om-fact { font-size:11px; opacity:.55; }
-.om-fact strong { font-family:'Fraunces',serif; font-size:18px; font-weight:200; opacity:1; color:var(--black); display:block; }
-.om-desc { font-size:13.5px; line-height:1.72; color:var(--mid); margin-bottom:26px; }
-.om-price { font-family:'Fraunces',serif; font-size:38px; font-weight:200; letter-spacing:-.03em; margin-bottom:24px; }
-.om-actions { display:flex; gap:12px; flex-wrap:wrap; }
-
-/* ══════════════════════════════════════
-   ADMIN DASHBOARD
-══════════════════════════════════════ */
-#adminDash {
-  position: fixed; inset: 0; z-index: 800;
-  background: var(--white);
-  display: none; flex-direction: column;
-}
-#adminDash.open { display: flex; }
-
-.dsh-header {
-  height: 62px; display: flex; align-items: center; justify-content: space-between;
-  padding: 0 36px; border-bottom: 1px solid var(--rule); flex-shrink: 0;
-}
-.dsh-title { font-family:'Fraunces',serif; font-size:20px; font-weight:200; letter-spacing:-.02em; }
-.dsh-title span { font-family:'DM Sans',sans-serif; font-size:10px; opacity:.38; margin-left:10px; }
-.dsh-header-r { display:flex; align-items:center; gap:14px; }
-.dsh-user-lbl { font-size:11px; opacity:.48; }
-.dsh-logout {
-  font-size:10px; letter-spacing:.16em; text-transform:uppercase;
-  border:1px solid var(--rule); border-radius:100px; padding:7px 15px;
-  cursor:pointer; transition:all .3s; background:transparent; color:var(--black);
-}
-.dsh-logout:hover { background:var(--black); color:var(--cream); border-color:var(--black); }
-
-.dsh-body { display:flex; flex:1; overflow:hidden; }
-.dsh-nav {
-  width: 215px; flex-shrink:0; border-right:1px solid var(--rule);
-  padding: 24px 0; overflow-y:auto;
-}
-.dsh-nav-btn {
-  display:flex; align-items:center; gap:9px;
-  padding:11px 24px; font-size:12.5px; cursor:pointer;
-  transition:all .25s; color:var(--mid); opacity:.72;
-  border:none; background:none; width:100%; text-align:left;
-}
-.dsh-nav-btn:hover { opacity:1; background:var(--cream); }
-.dsh-nav-btn.active { opacity:1; background:var(--black); color:var(--cream); }
-.dsh-nav-sep { height:1px; background:var(--rule); margin:12px 20px; }
-
-.dsh-main { flex:1; overflow-y:auto; padding:40px; }
-.dsh-panel { display:none; }
-.dsh-panel.show { display:block; }
-.dp-title { font-family:'Fraunces',serif; font-size:28px; font-weight:200; letter-spacing:-.022em; margin-bottom:6px; }
-.dp-sub { font-size:12.5px; opacity:.44; margin-bottom:36px; }
+/* Main content */
+.adm-content{flex:1;overflow-y:auto;padding:32px}
+.adm-view{display:none}.adm-view.active{display:block}
+.adm-view-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;margin-bottom:5px;letter-spacing:-.01em}
+.adm-view-sub{font-size:13px;color:var(--ink3);margin-bottom:28px}
 
 /* Overview cards */
-.ov-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(175px,1fr)); gap:18px; margin-bottom:40px; }
-.ov-card { border:1px solid var(--rule); border-radius:8px; padding:26px; }
-.ov-n { font-family:'Fraunces',serif; font-size:42px; font-weight:200; letter-spacing:-.03em; line-height:1; }
-.ov-l { font-size:9px; letter-spacing:.22em; text-transform:uppercase; opacity:.42; margin-top:6px; }
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:32px}
+.stat-card{background:var(--w);border:1px solid var(--g2);border-radius:16px;padding:20px;transition:box-shadow .2s}
+.stat-card:hover{box-shadow:var(--sh)}
+.stat-card-n{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;line-height:1;margin-bottom:5px;letter-spacing:-.02em}
+.stat-card-l{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
+.recent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.recent-card{background:var(--w);border:1px solid var(--g2);border-radius:14px;overflow:hidden;cursor:pointer;transition:box-shadow .2s}
+.recent-card:hover{box-shadow:var(--sh)}
+.recent-img{aspect-ratio:16/10;overflow:hidden;background:var(--g2)}
+.recent-img img{width:100%;height:100%;object-fit:cover}
+.recent-info{padding:11px 13px}
+.recent-name{font-size:12px;font-weight:500;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recent-meta{font-size:11px;color:var(--ink3)}
 
 /* Object form */
-.objform-wrap { background:var(--cream2); border-radius:10px; padding:36px; }
-.objform-title { font-family:'Fraunces',serif; font-size:19px; font-weight:200; margin-bottom:26px; }
-.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.form-full { grid-column:1/-1; }
-.fg { display:flex; flex-direction:column; gap:5px; }
-.fg label { font-size:8px; letter-spacing:.26em; text-transform:uppercase; opacity:.48; }
-.fg input, .fg select, .fg textarea {
-  border:1px solid rgba(8,8,8,.12); border-radius:5px; padding:10px 14px;
-  font-size:13px; color:var(--black); background:var(--white); transition:border-color .3s;
-}
-.fg input:focus, .fg select:focus, .fg textarea:focus { outline:none; border-color:var(--black); }
-.fg textarea { min-height:88px; resize:vertical; }
+.obj-form-wrap{background:var(--w);border:1px solid var(--g2);border-radius:20px;padding:28px}
+.obj-form-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;margin-bottom:22px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-full{grid-column:1/-1}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
+.form-input,.form-select,.form-textarea{border:1.5px solid var(--g2);border-radius:9px;padding:10px 12px;font-size:13px;color:var(--ink);background:var(--g0);transition:border-color .25s,background .25s;font-family:inherit;width:100%}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--ink);background:var(--w)}
+.form-textarea{min-height:85px;resize:vertical}
 
-/* Upload zone */
-.upload-zone {
-  border:2px dashed rgba(8,8,8,.13); border-radius:7px;
-  padding:32px; text-align:center; cursor:pointer;
-  transition:all .3s; background:var(--white);
-}
-.upload-zone:hover, .upload-zone.drag { border-color:var(--black); background:var(--cream2); }
-.upload-zone input { display:none; }
-.upload-icon { font-size:30px; margin-bottom:10px; opacity:.36; }
-.upload-label { font-size:11.5px; opacity:.48; line-height:1.6; }
-.preview-strip { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-.preview-item { position:relative; width:80px; height:80px; border-radius:5px; overflow:hidden; }
-.preview-item img { width:100%;height:100%;object-fit:cover; }
-.preview-rm { position:absolute; top:3px; right:3px; width:18px; height:18px; background:rgba(8,8,8,.72); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; cursor:pointer; border:none; }
+/* Image upload grid */
+.imgs-upload-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:12px}
+.img-upload-slot{aspect-ratio:4/3;border-radius:10px;overflow:hidden;position:relative;background:var(--g1);border:1.5px dashed var(--g3);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;flex-direction:column;gap:5px}
+.img-upload-slot:hover{border-color:var(--ink);background:var(--g0)}
+.img-upload-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.img-upload-slot .slot-del{position:absolute;top:4px;right:4px;width:18px;height:18px;background:rgba(0,0,0,.65);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;cursor:pointer;border:none;z-index:1;font-family:inherit}
+.img-upload-slot input{display:none}
+.slot-plus{font-size:20px;opacity:.3;line-height:1}
+.slot-label{font-size:9px;font-weight:500;color:var(--ink3);letter-spacing:.05em;text-transform:uppercase}
 
-.form-actions { margin-top:22px; display:flex; gap:10px; }
-.f-btn-p { padding:11px 24px; border-radius:100px; font-size:11.5px; font-weight:500; background:var(--black); color:var(--cream); border:none; cursor:pointer; transition:all .3s; }
-.f-btn-p:hover { background:var(--moss); }
-.f-btn-s { padding:11px 22px; border-radius:100px; font-size:11.5px; background:transparent; border:1px solid var(--rule); color:var(--black); cursor:pointer; transition:all .3s; }
-.f-btn-s:hover { background:var(--cream); }
-.form-msg { font-size:11.5px; color:var(--moss); margin-top:12px; display:none; }
+.form-actions{margin-top:18px;display:flex;gap:10px}
+.form-save-btn{padding:10px 22px;border-radius:999px;font-size:12px;font-weight:600;background:var(--ink);color:#fff;border:none;cursor:pointer;transition:all .25s;font-family:inherit}
+.form-save-btn:hover{background:var(--ink2)}
+.form-cancel-btn{padding:10px 18px;border-radius:999px;font-size:12px;background:transparent;border:1.5px solid var(--g2);color:var(--ink);cursor:pointer;transition:all .25s;font-family:inherit}
+.form-cancel-btn:hover{background:var(--g2)}
+.form-msg{font-size:12px;color:var(--blue);margin-top:10px;display:none;padding:8px 12px;background:rgba(0,113,227,.07);border-radius:8px}
 
-/* Objects table */
-.obj-tbl { width:100%; border-collapse:collapse; }
-.obj-tbl th { font-size:8.5px; letter-spacing:.26em; text-transform:uppercase; opacity:.38; text-align:left; padding:9px 14px; border-bottom:1px solid var(--rule); }
-.obj-tbl td { font-size:12.5px; padding:13px 14px; border-bottom:1px solid var(--rule); vertical-align:middle; }
-.obj-tbl tr:last-child td { border-bottom:none; }
-.obj-tbl tr:hover td { background:var(--cream2); }
-.tbl-bdg { font-size:8px; letter-spacing:.16em; text-transform:uppercase; padding:3px 9px; border-radius:2px; }
-.tbl-bdg.available { background:rgba(43,59,42,.1); color:var(--moss); }
-.tbl-bdg.reserved { background:rgba(184,154,92,.15); color:#7a5e1a; }
-.tbl-bdg.sold { background:rgba(8,8,8,.07); color:var(--mid); }
-.tbl-act { font-size:10px; padding:4px 12px; border-radius:4px; cursor:pointer; border:none; background:var(--cream2); color:var(--black); transition:all .25s; margin-right:5px; }
-.tbl-act:hover { background:var(--black); color:var(--cream); }
-.tbl-act.del:hover { background:#bb2222; color:#fff; }
+/* Objects list */
+.obj-list-table{width:100%;border-collapse:collapse}
+.obj-list-table th{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:8px 12px;border-bottom:1px solid var(--g2)}
+.obj-list-table td{font-size:13px;padding:12px;border-bottom:1px solid var(--g1);vertical-align:middle}
+.obj-list-table tr:last-child td{border-bottom:none}
+.obj-list-table tr:hover td{background:var(--g0)}
+.list-badge{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.list-badge.kaufen{background:var(--g1);color:var(--ink2)}
+.list-badge.mieten{background:var(--ink);color:#fff}
+.list-badge.verfügbar{background:rgba(48,209,88,.1);color:#166534}
+.list-badge.reserviert{background:rgba(255,159,10,.1);color:#7a4800}
+.list-badge.verkauft{background:rgba(255,59,48,.1);color:var(--red)}
+.list-status-select{border:1px solid var(--g2);border-radius:7px;padding:4px 9px;font-size:12px;background:var(--g0);cursor:pointer;font-family:inherit}
+.list-action-btn{font-size:11px;padding:4px 12px;border-radius:999px;cursor:pointer;border:none;background:var(--g1);color:var(--ink);transition:all .2s;margin-right:4px;font-family:inherit}
+.list-action-btn:hover{background:var(--ink);color:#fff}
+.list-action-btn.del:hover{background:var(--red);color:#fff}
 
-/* ══════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════ */
-@media (max-width:1024px) {
-  .ueber-grid    { grid-template-columns:1fr; gap:48px; }
-  .vertr-grid    { grid-template-columns:1fr; gap:56px; }
-  .kt-grid       { grid-template-columns:1fr; gap:56px; }
-  .ft-grid       { grid-template-columns:1fr 1fr; }
-  .leist-head    { grid-template-columns:1fr; gap:22px; }
-  .svc           { grid-template-columns:48px 1fr auto; }
-  .svc-desc      { display:none; }
+/* Settings */
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.settings-box{background:var(--w);border:1px solid var(--g2);border-radius:18px;padding:24px}
+.settings-box.full{grid-column:1/-1}
+.settings-box-title{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;margin-bottom:16px}
+.sf{margin-bottom:13px}
+.sl{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:5px}
+.si{width:100%;border:1.5px solid var(--g2);border-radius:9px;padding:10px 12px;font-size:13px;color:var(--ink);background:var(--g0);transition:border-color .25s;font-family:inherit}
+.si:focus{outline:none;border-color:var(--ink);background:var(--w)}
+.si-select{width:100%;border:1.5px solid var(--g2);border-radius:9px;padding:10px 12px;font-size:13px;color:var(--ink);background:var(--g0);font-family:inherit}
+.s-save-btn{padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;background:var(--ink);color:#fff;border:none;cursor:pointer;transition:all .25s;margin-top:4px;font-family:inherit}
+.s-save-btn:hover{background:var(--ink2)}
+.s-msg{font-size:12px;color:var(--blue);margin-top:8px;display:none;padding:7px 12px;background:rgba(0,113,227,.07);border-radius:8px}
+.hrs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* Mobile Tab-Bar */
+#admTabBar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:6001;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--g2);
+  padding:6px 0 calc(6px + env(safe-area-inset-bottom));
+  flex-direction:row;align-items:stretch;
 }
-@media (max-width:768px) {
-  #nav           { padding:0 18px; }
-  .nav-mid, .nav-pill { display:none; }
-  #hamburger     { display:flex; }
-  .section       { padding:80px 20px; }
-  footer         { padding:60px 20px 40px; }
-  .hero-body     { padding:0 20px 56px; }
-  .hero-scroll-hint { right:20px; }
-  .hero-lower    { grid-template-columns:1fr; gap:26px; }
-  .hero-btns     { justify-content:flex-start; }
-  .stat-grid     { grid-template-columns:1fr 1fr; }
-  .pillars       { grid-template-columns:1fr; }
-  .ft-grid       { grid-template-columns:1fr; }
-  .kf-row        { grid-template-columns:1fr; }
-  .dsh-nav       { width:180px; }
-  .dsh-main      { padding:22px; }
-  .dsh-header    { padding:0 18px; }
-  .form-grid     { grid-template-columns:1fr; }
+.tab-bar-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;padding:6px 4px;cursor:pointer;border:none;background:transparent;
+  color:var(--ink3);transition:color .2s;font-family:inherit;
 }
-@media (max-width:520px) {
-  .obj-grid  { grid-template-columns:1fr; }
-  .stat-grid { grid-template-columns:1fr; }
-  .dsh-nav   { display:none; }
+.tab-bar-btn.active{color:var(--ink)}
+.tab-bar-btn svg{flex-shrink:0}
+.tab-bar-label{font-size:9px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .kt-grid{grid-template-columns:1fr;gap:56px}
+  .why-cards{grid-template-columns:1fr}
+  .settings-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  #nav{width:calc(100% - 32px);padding:0 14px}
+  .nav-links,.nav-cta{display:none}#burger{display:flex}
+  #about,#objekte,#why,#testimonial,#kontakt{padding:68px 20px}
+  footer{padding:52px 20px 36px}.h-body{padding:0 20px 76px}.h-scroll{right:20px}
+  .about-nums{grid-template-columns:1fr 1fr}.obj-grid{grid-template-columns:1fr}
+  .kf-row2{grid-template-columns:1fr}.ft-grid{grid-template-columns:1fr}
+  .adm-sidebar{display:none}
+  #admTabBar{display:flex}
+  .adm-content{padding:16px 16px 80px}
+  .adm-header{padding:0 16px}
+  .form-grid{grid-template-columns:1fr}
+  .hrs-grid{grid-template-columns:1fr}
+  .imgs-upload-grid{grid-template-columns:repeat(3,1fr)}
+  #statusBadge{bottom:16px;right:16px}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .settings-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .about-nums{grid-template-columns:1fr 1fr}
+  .why-cards{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- ══ INTRO SPLASH ══ -->
+<!-- INTRO -->
 <div id="intro">
-  <div class="intro-lines"></div>
-  <div class="intro-orb"></div>
-  <div class="intro-center">
-    <p class="intro-eyebrow">Ihr vertrauter Partner in Tübingen</p>
-    <div class="intro-name">
-      <span class="row"><span class="word">Gaetano</span></span>
-      <span class="row"><span class="word">Reale.</span></span>
+  <div class="i-noise"></div>
+  <div class="i-center">
+    <p class="i-eyebrow">Ihr Zuhause wartet bereits</p>
+    <div class="i-logo">
+      <span class="irow"><span class="iword">Gaetano</span></span>
+      <span class="irow"><span class="iword">Reale.</span></span>
     </div>
-    <p class="intro-tagline">Bauen &nbsp;·&nbsp; Immobilien &nbsp;·&nbsp; Tübingen</p>
+    <p class="i-sub">Immobilien · Tübingen</p>
   </div>
-  <div class="intro-bar-wrap">
-    <div class="intro-bar-track"><div class="intro-bar-fill"></div></div>
-    <p class="intro-bar-label">Qualität seit 1999</p>
+  <div class="i-progress">
+    <div class="i-track"><div class="i-fill"></div></div>
+    <p class="i-plabel">Tübingen, Baden-Württemberg</p>
   </div>
 </div>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">G</div>
-    <div class="nav-logo-text">
-      Gaetano Reale
-      <span class="nav-logo-sub">GmbH · Tübingen</span>
-    </div>
-  </a>
-  <div class="nav-mid">
-    <a href="#ueber"    class="nav-a">Unternehmen</a>
-    <a href="#leist"    class="nav-a">Leistungen</a>
-    <a href="#objekte"  class="nav-a">Objekte</a>
-    <a href="#vertr"    class="nav-a">Vertrauen</a>
-    <a href="#kontakt"  class="nav-a">Kontakt</a>
+  <span class="nav-brand" data-e="nav_brand">Gaetano Reale</span>
+  <div class="nav-links">
+    <a href="#about" class="nav-link">Über uns</a>
+    <a href="#objekte" class="nav-link">Objekte</a>
+    <a href="#why" class="nav-link">Warum wir</a>
+    <a href="#kontakt" class="nav-link">Kontakt</a>
   </div>
   <div class="nav-right">
-    <a href="#kontakt" class="nav-pill">Beratung anfragen</a>
-    <button id="adminTrigger" aria-label="Admin">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-        <circle cx="12" cy="7" r="4"/>
-      </svg>
+    <a href="#kontakt" class="nav-cta">Anfragen</a>
+    <button id="adminLoginBtn" aria-label="Admin">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </button>
-    <button id="hamburger" aria-label="Menü">
-      <span class="hbar"></span><span class="hbar"></span>
-    </button>
+    <button id="burger"><span class="bl"></span><span class="bl"></span></button>
   </div>
 </nav>
 
-<!-- Mobile menu -->
-<div id="mob-menu">
-  <a href="#ueber"   class="mob-a">Unternehmen</a>
-  <a href="#leist"   class="mob-a">Leistungen</a>
+<!-- MOBILE MENU -->
+<div id="mobMenu">
+  <a href="#about" class="mob-a">Über uns</a>
   <a href="#objekte" class="mob-a">Objekte</a>
-  <a href="#vertr"   class="mob-a">Vertrauen</a>
+  <a href="#why" class="mob-a">Warum wir</a>
   <a href="#kontakt" class="mob-a">Kontakt</a>
-  <div class="mob-foot">Tübingen · Seit 1999</div>
 </div>
 
-<!-- ══ HERO ══ -->
+<!-- STATUS BADGE -->
+<div id="statusBadge"><span class="sb-dot open" id="sbDot"></span><span id="sbText">Geöffnet</span></div>
+
+<!-- HERO -->
 <section id="hero">
-  <div class="hero-img" id="heroBg"></div>
-  <div class="hero-grain"></div>
-  <div class="hero-body">
-    <p class="hero-tag">
-      <span class="hero-live-dot"></span>
-      Tübingen · Baden-Württemberg
-    </p>
-    <h1 class="hero-headline">
-      <span class="hl"><span class="hw">Bauen</span></span>
-      <span class="hl"><span class="hw">mit&nbsp;</span><span class="hw hem">Charakter.</span></span>
+  <div class="h-bg" id="heroBg"></div><div class="h-vig"></div>
+  <div class="h-body">
+    <div class="h-eyebrow"><span class="h-pulse"></span><span data-e="hero_tag">Tübingen · Immobilien</span></div>
+    <h1 class="h-h">
+      <span class="hw" data-e="hero_h1">Ihr Zuhause</span><br>
+      <em class="hw" data-e="hero_h2">wartet bereits.</em>
     </h1>
-    <div class="hero-lower">
-      <p class="hero-copy">Seit über 25 Jahren entstehen unter unserer Hand Häuser, die nicht nur halten — sondern bleiben. Persönlich geführt. Regional verwurzelt. Präzise umgesetzt.</p>
-      <div class="hero-btns">
-        <a href="#objekte" class="btn btn-solid">
-          <span>Aktuelle Objekte</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </a>
-        <a href="#kontakt" class="btn btn-outline-w">Kontakt aufnehmen</a>
-      </div>
+    <p class="h-copy" data-e="hero_copy">Exklusive Immobilien in Tübingen und Umgebung. Kaufen oder mieten — wir begleiten Sie persönlich auf jedem Schritt.</p>
+    <div class="h-btns">
+      <a href="#objekte" class="btn-primary"><span>Objekte entdecken</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
+      <a href="#kontakt" class="btn-secondary">Kostenlos beraten lassen</a>
     </div>
   </div>
-  <div class="hero-scroll-hint">Scroll</div>
+  <div class="h-scroll">Scroll</div>
 </section>
 
-<!-- ══ TICKER ══ -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item">Hochbau</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item">Tiefbau</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item" style="font-style:italic">Schlüsselfertig</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item">Sanierung</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item" style="font-style:italic">Immobilien</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item">Bauträger</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item">Tübingen</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item" style="font-style:italic">Qualität</span><span class="ticker-sep">✦</span>
-    <!-- duplicate -->
-    <span class="ticker-item">Hochbau</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item">Tiefbau</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item" style="font-style:italic">Schlüsselfertig</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item">Sanierung</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item" style="font-style:italic">Immobilien</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item">Bauträger</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item">Tübingen</span><span class="ticker-sep">✦</span>
-    <span class="ticker-item" style="font-style:italic">Qualität</span><span class="ticker-sep">✦</span>
+<!-- ABOUT -->
+<section id="about"><div class="about-grid">
+  <div class="about-nums">
+    <div class="about-cell"><div class="about-n" data-cnt="25" data-suf="+">0</div><div class="about-l" data-e="cnt1">Jahre Erfahrung</div></div>
+    <div class="about-cell"><div class="about-n" data-cnt="180">0</div><div class="about-l" data-e="cnt2">Objekte vermittelt</div></div>
+    <div class="about-cell"><div class="about-n">98<span style="font-size:.5em">%</span></div><div class="about-l" data-e="cnt3">Zufriedene Kunden</div></div>
+    <div class="about-cell"><div class="about-n" data-cnt="4" data-suf=".9★">0</div><div class="about-l" data-e="cnt4">Bewertung</div></div>
   </div>
-</div>
+  <div class="about-text">
+    <p class="eyebrow" style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px">Über Gaetano Reale</p>
+    <h2 class="about-headline" data-e="about_h">Persönlich.<br><em>Vertrauenswürdig.</em></h2>
+    <p class="about-p" data-e="about_p1">Seit über 25 Jahren vermitteln wir Immobilien in Tübingen und Umgebung. Was uns antreibt: Ehrlichkeit, Diskretion und echtes Interesse an Ihren Bedürfnissen.</p>
+    <p class="about-p" data-e="about_p2">Ob Kauf, Miete oder Investition — wir kennen den Markt, die Stadtteile und die Menschen dahinter. Sprechen Sie uns direkt an.</p>
+  </div>
+</div></section>
 
-<!-- ══ ÜBER UNS ══ -->
-<section id="ueber" class="ueber section">
-<div class="section-inner">
-  <div class="ueber-grid">
-    <div class="ueber-img-wrap reveal">
-      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=85" alt="Baustelle Gaetano Reale">
-      <div class="ueber-badge"><strong>25+</strong>Jahre Erfahrung</div>
-    </div>
-    <div>
-      <p class="section-tag">01 · Unternehmen</p>
-      <h2 class="h2 reveal">Ein Name.<br><em>Ein Versprechen.</em></h2>
-      <div class="ueber-body reveal d1">
-        <p>Seit 1999 baut die Familie Reale Häuser, die für Generationen gedacht sind. Was Gaetano Reale in Tübingen begründete, führen wir heute mit derselben Haltung weiter: Jeder Bau ist persönlich.</p>
-        <p>Wir sind klein genug, um zuzuhören. Groß genug, um Großes umzusetzen. Regional verwurzelt — was wir bauen, sehen wir täglich auf dem Heimweg.</p>
-        <p>Als Bauunternehmen <em>und</em> Immobilienentwickler begleiten wir Sie vom ersten Gespräch bis zum Schlüssel in der Hand.</p>
-      </div>
-      <div class="stat-grid reveal d2">
-        <div class="stat-cell"><div class="stat-n" data-to="25" data-suf="+">0</div><div class="stat-l">Jahre Erfahrung</div></div>
-        <div class="stat-cell"><div class="stat-n" data-to="180">0</div><div class="stat-l">Projekte</div></div>
-        <div class="stat-cell"><div class="stat-n">4,7<span style="font-size:.5em;opacity:.5">★</span></div><div class="stat-l">Kundenwertung</div></div>
-      </div>
-    </div>
+<!-- OBJEKTE -->
+<section id="objekte"><div class="obj-inner">
+  <div class="obj-top">
+    <h2 class="obj-title">Aktuelle <em>Angebote.</em></h2>
+    <a href="#kontakt" style="font-size:13px;font-weight:500;color:var(--ink3)">Alle anfragen →</a>
   </div>
-</div>
-</section>
-
-<!-- ══ LEISTUNGEN ══ -->
-<section id="leist" class="leist section">
-<div class="section-inner">
-  <div class="leist-head">
-    <div>
-      <p class="section-tag">02 · Leistungen</p>
-      <h2 class="h2 reveal">Vom Aushub<br>bis zum <em>Aushang.</em></h2>
-    </div>
-    <p class="leist-sub reveal">Fünf Disziplinen unter einem Dach. Sie führen ein einziges Gespräch — wir koordinieren den Rest.</p>
-  </div>
-  <div class="svc-list">
-    <div class="svc reveal">
-      <span class="svc-num">01</span>
-      <div class="svc-name">Hoch- &amp; Tiefbau</div>
-      <div class="svc-desc">Schlüsselfertige Neubauten, Rohbau, Erdarbeiten und Fundamentierung aus einer Hand.</div>
-      <div class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></div>
-    </div>
-    <div class="svc reveal d1">
-      <span class="svc-num">02</span>
-      <div class="svc-name">Montage &amp; Trockenbau</div>
-      <div class="svc-desc">Innenausbau, Trennwände, abgehängte Decken, Dämmung — sauber und präzise.</div>
-      <div class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></div>
-    </div>
-    <div class="svc reveal d2">
-      <span class="svc-num">03</span>
-      <div class="svc-name">Projektentwicklung</div>
-      <div class="svc-desc">Wohn- und Gewerbeobjekte vom Grundstück bis zur Übergabe als Bauherr und Baubetreuer.</div>
-      <div class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></div>
-    </div>
-    <div class="svc reveal d3">
-      <span class="svc-num">04</span>
-      <div class="svc-name">Immobilienvermittlung</div>
-      <div class="svc-desc">Verkauf eigener Neubauprojekte und ausgewählter Bestandsobjekte. Diskret, regional.</div>
-      <div class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></div>
-    </div>
-    <div class="svc reveal d4">
-      <span class="svc-num">05</span>
-      <div class="svc-name">Sanitär &amp; Service</div>
-      <div class="svc-desc">Bäder, Heizung, Wartung, Reparaturen — meist innerhalb von 48 Stunden vor Ort.</div>
-      <div class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ══ OBJEKTE ══ -->
-<section id="objekte" class="objekte section">
-<div class="section-inner">
-  <div class="obj-topbar reveal">
-    <div>
-      <p class="section-tag">03 · Objekte</p>
-      <h2 class="h2">Im <em>Verkauf.</em></h2>
-    </div>
-    <a href="#kontakt" class="btn btn-outline-d">Alle anfragen</a>
-  </div>
-  <div class="obj-filters" id="objFilters">
-    <button class="flt on" data-f="all">Alle</button>
-    <button class="flt" data-f="Neubau">Neubau</button>
-    <button class="flt" data-f="Sanierung">Sanierung</button>
-    <button class="flt" data-f="Penthouse">Penthouse</button>
-    <button class="flt" data-f="Bauträger">Bauträger</button>
+  <div class="tab-row">
+    <button class="tab-btn on" data-f="all">Alle</button>
+    <button class="tab-btn" data-f="kaufen">Kaufen</button>
+    <button class="tab-btn" data-f="mieten">Mieten</button>
   </div>
   <div class="obj-grid" id="objGrid"></div>
-</div>
-</section>
+</div></section>
 
-<!-- ══ VERTRAUEN ══ -->
-<section id="vertr" class="vertr section">
-<div class="section-inner">
-  <div class="vertr-grid">
-    <div>
-      <p class="section-tag" style="color:var(--cream)">04 · Warum wir</p>
-      <h2 class="h2 reveal" style="color:var(--cream)">Vertrauen<br>baut <em>man.</em></h2>
-      <div class="vertr-quote reveal d1">
-        <div class="vertr-stars">★★★★<span style="opacity:.28">★</span></div>
-        <p class="vertr-q">„Wer einmal mit Reale baut, baut nicht mehr mit jemand anderem. Punkt."</p>
-        <p class="vertr-attr">— M. Hartmann, Bauherr Mössingen &nbsp;·&nbsp; 4,7 / 5,0 &nbsp;·&nbsp; 124 Bewertungen</p>
-      </div>
-    </div>
-    <div class="pillars reveal d2">
-      <div class="pillar"><div class="pillar-n">01</div><h3 class="pillar-h">Persönlich</h3><p class="pillar-p">Sie sprechen mit dem Bauherrn, nicht mit einem Callcenter. Eine Nummer. Ein Name. Den ganzen Bau lang.</p></div>
-      <div class="pillar"><div class="pillar-n">02</div><h3 class="pillar-h">Pünktlich</h3><p class="pillar-p">Wir nennen Übergabetermine — und halten sie. 94 % unserer Projekte schlossen 2024 fristgerecht ab.</p></div>
-      <div class="pillar"><div class="pillar-n">03</div><h3 class="pillar-h">Präzise</h3><p class="pillar-p">Eigene Maurer, Trockenbauer, Sanitärinstallation. Wir koordinieren keine Subunternehmer — wir <em>sind</em> sie.</p></div>
-      <div class="pillar"><div class="pillar-n">04</div><h3 class="pillar-h">Regional</h3><p class="pillar-p">Tübingen, Rottenburg, Mössingen, Reutlingen. Jeden Bebauungsplan kennen wir persönlich.</p></div>
-    </div>
+<!-- WHY -->
+<section id="why"><div class="why-inner">
+  <p class="why-label">Warum Gaetano Reale</p>
+  <h2 class="why-title" data-e="why_h">Drei Gründe,<br><em>die zählen.</em></h2>
+  <div class="why-cards">
+    <div class="why-card"><div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3 class="why-h" data-e="why1_h">Persönliche Beratung</h3><p class="why-p" data-e="why1_p">Kein Callcenter. Sie sprechen direkt mit einem Experten, der Tübingen kennt wie seine eigene Wohnung.</p></div>
+    <div class="why-card"><div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div><h3 class="why-h" data-e="why2_h">Schnell &amp; diskret</h3><p class="why-p" data-e="why2_p">Wir handeln schnell, wenn es darauf ankommt. Diskretion ist selbstverständlich — nicht optional.</p></div>
+    <div class="why-card"><div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div><h3 class="why-h" data-e="why3_h">Tiefe Marktkenntnis</h3><p class="why-p" data-e="why3_p">Lustnau, Wanne, Derendingen, Weststadt — wir kennen jeden Stadtteil und jeden Preis.</p></div>
   </div>
-</div>
-</section>
+</div></section>
 
-<!-- ══ KONTAKT ══ -->
-<section id="kontakt" class="kontakt section">
-<div class="section-inner">
-  <p class="section-tag" style="color:var(--cream)">05 · Kontakt</p>
-  <h2 class="h2 reveal" style="color:var(--cream)">Lassen Sie uns<br><em>reden.</em></h2>
-  <div class="kt-grid">
+<!-- TESTIMONIAL -->
+<section id="testimonial"><div class="test-wrap">
+  <div class="test-stars">★★★★★</div>
+  <p class="test-q" data-e="test_q">„Wir haben innerhalb von zwei Wochen unsere Traumwohnung gefunden. Herr Reale hat uns von Anfang an das Gefühl gegeben, in den besten Händen zu sein."</p>
+  <p class="test-attr" data-e="test_attr">— Familie Berger, Tübingen-Lustnau</p>
+</div></section>
+
+<!-- KONTAKT -->
+<section id="kontakt"><div class="kt-grid">
+  <div>
+    <h2 class="kt-title" data-e="kt_h">Lassen Sie uns<br><em>reden.</em></h2>
     <form id="ktForm">
-      <div class="kf-row">
-        <div class="kf-group"><label class="kf-label">Vor- &amp; Nachname</label><input type="text" class="kf-inp" placeholder="Max Mustermann" required></div>
-        <div class="kf-group"><label class="kf-label">Telefon</label><input type="tel" class="kf-inp" placeholder="+49 70…"></div>
+      <div class="kf-row2">
+        <div class="kf-g"><label class="kf-label">Vorname</label><input type="text" class="kf-input" placeholder="Max" required></div>
+        <div class="kf-g"><label class="kf-label">Nachname</label><input type="text" class="kf-input" placeholder="Mustermann" required></div>
       </div>
-      <div class="kf-group"><label class="kf-label">E-Mail-Adresse</label><input type="email" class="kf-inp" placeholder="max@beispiel.de" required></div>
-      <div class="kf-group"><label class="kf-label">Ihr Vorhaben</label><textarea class="kf-inp" placeholder="Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb von 24 h."></textarea></div>
-      <p class="kf-note">Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.</p>
-      <button type="submit" class="kf-submit">
-        <span id="ktBtnLabel">Nachricht senden</span>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </button>
+      <div class="kf-g"><label class="kf-label">E-Mail</label><input type="email" class="kf-input" placeholder="max@beispiel.de" required></div>
+      <div class="kf-g"><label class="kf-label">Telefon</label><input type="tel" class="kf-input" placeholder="+49 70 …"></div>
+      <div class="kf-g"><label class="kf-label">Nachricht</label><textarea class="kf-input" placeholder="Ich interessiere mich für …"></textarea></div>
+      <p class="kf-note" data-e="kf_note">Datenschutzerklärung akzeptiert. Wir melden uns innerhalb von 24 Stunden.</p>
+      <button type="submit" class="kf-btn"><span id="ktBtnLbl">Nachricht senden</span></button>
     </form>
-    <div>
-      <div class="ki-block"><p class="ki-lbl">Telefon</p><div class="ki-val"><a href="tel:+497071234567">+49 7071 23 45 67</a></div></div>
-      <div class="ki-block"><p class="ki-lbl">E-Mail</p><div class="ki-val"><a href="mailto:bau@reale-tuebingen.de">bau@reale-tuebingen.de</a></div></div>
-      <div class="ki-block"><p class="ki-lbl">Adresse</p><div class="ki-val" style="font-size:17px">Reutlinger Straße 142<br>72072 Tübingen</div></div>
-      <p class="ki-lbl">Öffnungszeiten</p>
-      <div class="ki-hours">
-        <div class="ki-row"><span>Montag – Freitag</span><span>07:30 – 17:00</span></div>
-        <div class="ki-row"><span>Samstag</span><span>Nach Vereinbarung</span></div>
-      </div>
-      <div class="ki-map"><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=9.0%2C48.51%2C9.08%2C48.54&layer=mapnik&marker=48.521%2C9.057" loading="lazy" title="Tübingen"></iframe></div>
-    </div>
   </div>
-</div>
-</section>
-
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div style="max-width:1440px;margin:0 auto">
-    <div class="ft-wordmark">Reale<em>.</em></div>
-    <div class="ft-grid">
-      <div class="ft-col">
-        <p class="ft-col-h">Gaetano Reale GmbH</p>
-        <p>Bauunternehmen &amp; Immobilienentwickler</p>
-        <p>Reutlinger Straße 142, 72072 Tübingen</p>
-        <p style="margin-top:12px">+49 7071 23 45 67</p>
-      </div>
-      <div class="ft-col">
-        <p class="ft-col-h">Navigation</p>
-        <a href="#ueber">Unternehmen</a>
-        <a href="#leist">Leistungen</a>
-        <a href="#objekte">Objekte</a>
-        <a href="#kontakt">Kontakt</a>
-      </div>
-      <div class="ft-col">
-        <p class="ft-col-h">Rechtliches</p>
-        <a href="#">Impressum</a>
-        <a href="#">Datenschutz</a>
-        <a href="#">AGB</a>
-        <a href="#">Cookies</a>
-      </div>
-      <div class="ft-col">
-        <p class="ft-col-h">Kontakt</p>
-        <a href="tel:+497071234567">+49 7071 23 45 67</a>
-        <a href="mailto:bau@reale-tuebingen.de">bau@reale-tuebingen.de</a>
-      </div>
-    </div>
-    <div class="ft-bottom">
-      <span>© 2026 Gaetano Reale GmbH · Alle Rechte vorbehalten.</span>
-      <span>Mit Sorgfalt gebaut in Tübingen.</span>
-    </div>
+  <div class="kt-info">
+    <p class="kt-eyebrow">Direkt erreichbar</p>
+    <div class="ki-row"><p class="ki-label">Telefon</p><p class="ki-val"><a id="kiPhone" href="#">+49 7071 00 00 00</a></p></div>
+    <div class="ki-row"><p class="ki-label">E-Mail</p><p class="ki-val"><a id="kiEmail" href="#">info@reale-immobilien.de</a></p></div>
+    <div class="ki-row"><p class="ki-label">Adresse</p><p class="ki-val" id="kiAddr">Otto-Erbe-Weg 38<br>72072 Tübingen</p></div>
+    <div class="ki-row"><p class="ki-label">Öffnungszeiten</p><div class="ki-hrs" id="kiHrs"></div></div>
+    <div class="ki-row"><p class="ki-label">Status</p><p class="ki-val" id="kiStatus">Geöffnet</p></div>
   </div>
-</footer>
+</div></section>
 
-<!-- ══ LOGIN MODAL ══ -->
-<div class="overlay" id="loginModal">
-  <div class="mbox">
-    <div class="mpad">
-      <h2 class="mbox-title">Admin-Zugang</h2>
-      <p class="mbox-sub">Geschützter Bereich · Gaetano Reale GmbH</p>
-      <div class="mf"><label class="ml">Benutzername</label><input type="text" class="mi" id="lUser" autocomplete="username"></div>
-      <div class="mf"><label class="ml">Passwort</label><input type="password" class="mi" id="lPass" autocomplete="current-password"><p class="merr" id="lErr">Benutzername oder Passwort falsch.</p></div>
-      <div class="m-btns"><button class="m-cancel" id="lCancel">Abbrechen</button><button class="m-submit" id="lSubmit">Anmelden</button></div>
-    </div>
+<!-- FOOTER -->
+<footer><div class="ft-inner">
+  <p class="ft-brand" data-e="ft_brand">Gaetano Reale</p>
+  <p class="ft-desc" data-e="ft_desc">Immobilien in Tübingen und Umgebung. Kaufen, mieten, investieren.</p>
+  <div class="ft-grid">
+    <div class="ft-col"><p class="ft-col-h">Navigation</p><a href="#about">Über uns</a><a href="#objekte">Objekte</a><a href="#why">Warum wir</a><a href="#kontakt">Kontakt</a></div>
+    <div class="ft-col"><p class="ft-col-h">Rechtliches</p><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">AGB</a></div>
+    <div class="ft-col"><p class="ft-col-h">Kontakt</p><a id="ftPhone" href="#">+49 7071 00 00 00</a><a id="ftEmail" href="#">info@reale-immobilien.de</a></div>
   </div>
-</div>
+  <div class="ft-bot"><span data-e="ft_copy">© 2026 Gaetano Reale Immobilien. Alle Rechte vorbehalten.</span><span>Tübingen, Baden-Württemberg</span></div>
+</div></footer>
 
-<!-- ══ OBJEKT DETAIL MODAL ══ -->
-<div class="overlay" id="objDetailModal">
-  <div class="mbox">
-    <div class="om-photo"><img id="omPhoto" src="" alt=""></div>
+<!-- ══════════════════ OBJEKT DETAIL MODAL ══════════════════ -->
+<div class="modal-overlay" id="objDetailModal">
+  <div class="modal-box" style="max-width:720px;padding:0">
+    <div class="om-gallery">
+      <div class="om-main-img"><img id="omMainImg" src="" alt=""></div>
+      <div class="om-thumbs" id="omThumbs"></div>
+    </div>
     <div class="om-body">
-      <p class="om-loc" id="omLoc"></p>
+      <div class="om-chips-row" id="omChips"></div>
       <h3 class="om-name" id="omName"></h3>
+      <p class="om-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span id="omLoc"></span></p>
       <div class="om-facts" id="omFacts"></div>
       <p class="om-desc" id="omDesc"></p>
+      <div class="om-features" id="omFeatures"></div>
       <div class="om-price" id="omPrice"></div>
-      <div class="om-actions">
-        <a href="#kontakt" class="btn btn-solid" id="omCta" style="font-size:12px;padding:12px 24px"><span>Anfrage senden</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-        <button class="btn btn-outline-d" id="omClose" style="font-size:12px;padding:12px 24px">Schließen</button>
+      <div class="om-footer"><button class="om-cta" id="omCta">Jetzt anfragen</button><button class="om-close-btn" id="omCloseBtn">Schließen</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ LOGIN MODAL ══════════════════ -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box" style="max-width:400px">
+    <div class="login-pad">
+      <p class="login-logo">Gaetano Reale</p>
+      <p class="login-sub">Admin-Zugang · Intern</p>
+      <div class="login-field">
+        <label class="login-label">Benutzername</label>
+        <input type="text" class="login-input" id="lUser" placeholder="Gaetano Reale" autocomplete="username" spellcheck="false">
+      </div>
+      <div class="login-field">
+        <label class="login-label">Passwort</label>
+        <input type="password" class="login-input" id="lPass" placeholder="••••••" autocomplete="current-password">
+        <p class="login-error" id="lErr">Falscher Benutzername oder Passwort.</p>
+      </div>
+      <div class="login-actions">
+        <button class="login-cancel" id="lCancel">Abbrechen</button>
+        <button class="login-submit" id="lSubmit">Anmelden</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══ ADMIN DASHBOARD ══ -->
-<div id="adminDash">
-  <div class="dsh-header">
-    <div><span class="dsh-title">Dashboard</span><span class="dsh-title"><span style="font-family:'DM Sans',sans-serif;font-size:10px;opacity:.36;margin-left:8px">Gaetano Reale GmbH</span></span></div>
-    <div class="dsh-header-r">
-      <span class="dsh-user-lbl">Angemeldet als <strong>reale</strong></span>
-      <button class="dsh-logout" id="dshLogout">Abmelden</button>
+<!-- ══════════════════ ADMIN GREETING ══════════════════ -->
+<div id="adminGreeting">
+  <p class="ag-time" id="agTime"></p>
+  <h2 class="ag-title" id="agTitle">Willkommen zurück.</h2>
+  <div class="ag-line"></div>
+  <p class="ag-sub">Gaetano Reale Immobilien · Admin</p>
+</div>
+
+<!-- ══════════════════ ADMIN PANEL ══════════════════ -->
+<div id="adminPanel">
+  <div class="adm-header">
+    <div class="adm-header-left">
+      <span class="adm-logo">Gaetano Reale · Admin</span>
+      <span class="adm-status-dot"></span>
+    </div>
+    <div class="adm-header-right">
+      <button class="adm-view-site" id="admViewSite">← Zur Website</button>
+      <button class="adm-logout" id="admLogout">Abmelden</button>
     </div>
   </div>
-  <div class="dsh-body">
-    <nav class="dsh-nav">
-      <button class="dsh-nav-btn active" data-p="overview">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+  <div class="adm-body">
+    <!-- SIDEBAR -->
+    <div class="adm-sidebar">
+      <button class="adm-nav-item active" data-view="overview">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
         Übersicht
       </button>
-      <button class="dsh-nav-btn" data-p="create">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
-        Objekt erstellen
+      <button class="adm-nav-item" data-view="obj-new">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        Objekt hinzufügen
       </button>
-      <button class="dsh-nav-btn" data-p="list">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+      <button class="adm-nav-item" data-view="obj-list">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
         Alle Objekte
       </button>
-      <div class="dsh-nav-sep"></div>
-      <button class="dsh-nav-btn" data-p="gosite">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        Zur Website
+      <div class="adm-nav-sep"></div>
+      <button class="adm-nav-item" data-view="settings">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        Einstellungen
       </button>
-    </nav>
-    <div class="dsh-main">
+    </div>
+    <!-- CONTENT -->
+    <div class="adm-content">
+
       <!-- OVERVIEW -->
-      <div class="dsh-panel show" id="dp-overview">
-        <h2 class="dp-title">Willkommen zurück.</h2>
-        <p class="dp-sub">Ihr Überblick auf einen Blick.</p>
-        <div class="ov-cards" id="ovCards"></div>
-        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:200;margin-bottom:16px;opacity:.55">Zuletzt hinzugefügt</h3>
-        <div id="recentGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px"></div>
+      <div class="adm-view active" id="view-overview">
+        <h2 class="adm-view-title">Übersicht</h2>
+        <p class="adm-view-sub">Alle Objekte auf einen Blick.</p>
+        <div class="stats-row" id="statsRow"></div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;margin-bottom:14px;color:var(--ink2)">Zuletzt hinzugefügt</h3>
+        <div class="recent-grid" id="recentGrid"></div>
       </div>
-      <!-- CREATE -->
-      <div class="dsh-panel" id="dp-create">
-        <h2 class="dp-title">Objekt erstellen</h2>
-        <p class="dp-sub">Pflichtfelder (*) ausfüllen und direkt auf der Website veröffentlichen.</p>
-        <div class="objform-wrap">
-          <p class="objform-title">Objekt-Details</p>
+
+      <!-- NEW OBJECT -->
+      <div class="adm-view" id="view-obj-new">
+        <h2 class="adm-view-title" id="objFormTitle">Objekt hinzufügen</h2>
+        <p class="adm-view-sub">Wird sofort auf der Website veröffentlicht.</p>
+        <div class="obj-form-wrap">
+          <p class="obj-form-title">Objektdetails</p>
           <div class="form-grid">
-            <div class="fg"><label>Name *</label><input id="f-name" placeholder="z.B. Villa Reutlinger Höhe"></div>
-            <div class="fg"><label>Standort *</label><input id="f-loc" placeholder="z.B. Tübingen-Lustnau"></div>
-            <div class="fg"><label>Preis *</label><input id="f-price" placeholder="z.B. 1.485.000"></div>
-            <div class="fg"><label>Status</label><select id="f-status"><option value="available">Zum Verkauf</option><option value="reserved">Reserviert</option><option value="sold">Verkauft</option></select></div>
-            <div class="fg"><label>Fläche (m²)</label><input id="f-area" placeholder="z.B. 198"></div>
-            <div class="fg"><label>Zimmer</label><input id="f-rooms" placeholder="z.B. 5,5"></div>
-            <div class="fg"><label>Kategorie</label><select id="f-cat"><option value="Neubau">Neubau</option><option value="Sanierung">Sanierung</option><option value="Penthouse">Penthouse</option><option value="Bauträger">Bauträger</option></select></div>
-            <div class="fg"><label>Fertigstellung</label><input id="f-year" placeholder="z.B. 2025"></div>
-            <div class="fg form-full"><label>Beschreibung</label><textarea id="f-desc" placeholder="Lage, Ausstattung, Besonderheiten…"></textarea></div>
-            <div class="fg form-full"><label>Bild-URL (oder unten hochladen)</label><input id="f-img" type="url" placeholder="https://…"></div>
-            <div class="fg form-full">
-              <label>Bild hochladen</label>
-              <div class="upload-zone" id="uploadZone">
-                <input type="file" id="uploadFile" accept="image/*" multiple>
-                <div class="upload-icon">📷</div>
-                <p class="upload-label">Klicken oder Bild hierher ziehen<br><span style="font-size:10px;opacity:.6">JPG · PNG · WebP · max. 10 MB</span></p>
-              </div>
-              <div class="preview-strip" id="previewStrip"></div>
+            <div class="form-group"><label>Name *</label><input class="form-input" id="of-name" placeholder="z.B. Penthouse am Neckar"></div>
+            <div class="form-group"><label>Stadtteil / Ort *</label><input class="form-input" id="of-loc" placeholder="z.B. Tübingen-Lustnau"></div>
+            <div class="form-group"><label>Preis *</label><input class="form-input" id="of-price" placeholder="z.B. 695.000 oder 1.400 / Mo."></div>
+            <div class="form-group"><label>Typ</label><select class="form-select" id="of-type"><option value="kaufen">Kaufen</option><option value="mieten">Mieten</option></select></div>
+            <div class="form-group"><label>Status</label><select class="form-select" id="of-status"><option value="verfügbar">Verfügbar</option><option value="reserviert">Reserviert</option><option value="verkauft">Verkauft</option></select></div>
+            <div class="form-group"><label>Kategorie</label><select class="form-select" id="of-cat"><option>Wohnung</option><option>Haus</option><option>Villa</option><option>Penthouse</option><option>Gewerbe</option><option>Grundstück</option></select></div>
+            <div class="form-group"><label>Fläche (m²)</label><input class="form-input" id="of-area" placeholder="z.B. 95"></div>
+            <div class="form-group"><label>Zimmer</label><input class="form-input" id="of-rooms" placeholder="z.B. 3,5"></div>
+            <div class="form-group"><label>Baujahr</label><input class="form-input" id="of-year" placeholder="z.B. 2022"></div>
+            <div class="form-group"><label>Etage / Lage</label><input class="form-input" id="of-floor" placeholder="z.B. 3. OG"></div>
+            <div class="form-group"><label>Energieausweis</label><input class="form-input" id="of-energy" placeholder="z.B. A+ / 45 kWh/(m²·a)"></div>
+            <div class="form-group"><label>Provision / Nebenkosten</label><input class="form-input" id="of-extra" placeholder="z.B. 3,57% inkl. MwSt."></div>
+            <div class="form-group form-full"><label>Ausstattung (kommagetrennt)</label><input class="form-input" id="of-features" placeholder="z.B. Balkon, Fußbodenheizung, Tiefgarage, Aufzug"></div>
+            <div class="form-group form-full"><label>Beschreibung</label><textarea class="form-textarea" id="of-desc" placeholder="Lage, Ausstattung, Highlights…"></textarea></div>
+            <div class="form-group form-full">
+              <label>Fotos (bis zu 8 Bilder)</label>
+              <div class="imgs-upload-grid" id="imgUploadGrid"></div>
             </div>
           </div>
           <div class="form-actions">
-            <button class="f-btn-p" id="fSave">Objekt veröffentlichen</button>
-            <button class="f-btn-s" id="fReset">Formular leeren</button>
+            <button class="form-save-btn" id="ofSave">Veröffentlichen</button>
+            <button class="form-cancel-btn" id="ofCancel">Zurücksetzen</button>
           </div>
-          <p class="form-msg" id="fMsg"></p>
+          <p class="form-msg" id="ofMsg"></p>
         </div>
       </div>
-      <!-- LIST -->
-      <div class="dsh-panel" id="dp-list">
-        <h2 class="dp-title">Alle Objekte</h2>
-        <p class="dp-sub">Objekte bearbeiten, löschen oder Status ändern.</p>
-        <div style="overflow-x:auto">
-          <table class="obj-tbl"><thead><tr><th>Name</th><th>Standort</th><th>Preis</th><th>Kategorie</th><th>Status</th><th>Aktionen</th></tr></thead>
-          <tbody id="tblBody"></tbody></table>
+
+      <!-- OBJECT LIST -->
+      <div class="adm-view" id="view-obj-list">
+        <h2 class="adm-view-title">Alle Objekte</h2>
+        <p class="adm-view-sub">Status ändern, bearbeiten oder löschen.</p>
+        <div style="overflow-x:auto;border-radius:16px;border:1px solid var(--g2);background:var(--w)">
+          <table class="obj-list-table">
+            <thead><tr><th>Name</th><th>Ort</th><th>Preis</th><th>Typ</th><th>Status</th><th>Aktionen</th></tr></thead>
+            <tbody id="objTableBody"></tbody>
+          </table>
         </div>
       </div>
-      <!-- GO SITE (handled in JS) -->
-      <div class="dsh-panel" id="dp-gosite"></div>
+
+      <!-- SETTINGS -->
+      <div class="adm-view" id="view-settings">
+        <h2 class="adm-view-title">Einstellungen</h2>
+        <p class="adm-view-sub">Firmendaten, Öffnungszeiten, Status und mehr.</p>
+        <div class="settings-grid">
+          <div class="settings-box">
+            <h3 class="settings-box-title">Kontaktdaten</h3>
+            <div class="sf"><label class="sl">Telefon</label><input class="si" id="s-phone" placeholder="+49 7071 …"></div>
+            <div class="sf"><label class="sl">E-Mail</label><input class="si" id="s-email" placeholder="info@…"></div>
+            <div class="sf"><label class="sl">Adresse Zeile 1</label><input class="si" id="s-addr1" placeholder="Otto-Erbe-Weg 38"></div>
+            <div class="sf"><label class="sl">Adresse Zeile 2</label><input class="si" id="s-addr2" placeholder="72072 Tübingen"></div>
+            <button class="s-save-btn" onclick="saveSettings('contact')">Speichern</button>
+            <p class="s-msg" id="msg-contact">✓ Kontaktdaten gespeichert</p>
+          </div>
+          <div class="settings-box">
+            <h3 class="settings-box-title">Firmenstatus</h3>
+            <p style="font-size:12px;color:var(--ink3);margin-bottom:12px;line-height:1.6">Erscheint auf der Website als Badge unten rechts.</p>
+            <div class="sf"><label class="sl">Status</label>
+              <select class="si-select" id="s-status">
+                <option value="open">🟢 Geöffnet</option>
+                <option value="closed">🔴 Geschlossen</option>
+                <option value="busy">🟡 Telefonisch besetzt</option>
+                <option value="vacation">🟡 Im Urlaub</option>
+                <option value="custom">✏️ Eigener Text</option>
+              </select>
+            </div>
+            <div class="sf"><label class="sl">Eigener Text (wenn "Eigener Text" gewählt)</label><input class="si" id="s-status-txt" placeholder="z.B. Heute bis 20 Uhr erreichbar"></div>
+            <button class="s-save-btn" onclick="saveSettings('status')">Speichern</button>
+            <p class="s-msg" id="msg-status">✓ Status aktualisiert</p>
+          </div>
+          <div class="settings-box">
+            <h3 class="settings-box-title">E-Mail Weiterleitung</h3>
+            <p style="font-size:12px;color:var(--ink3);margin-bottom:12px;line-height:1.6">Für echten E-Mail-Versand <a href="https://formspree.io" target="_blank" style="color:var(--blue)">Formspree.io</a> nutzen.</p>
+            <div class="sf"><label class="sl">Weiterleitung an</label><input class="si" id="s-fwd" placeholder="info@reale-immobilien.de"></div>
+            <div class="sf"><label class="sl">Formspree ID (optional)</label><input class="si" id="s-formspree" placeholder="z.B. xpwzgkqb"></div>
+            <button class="s-save-btn" onclick="saveSettings('email')">Speichern</button>
+            <p class="s-msg" id="msg-email">✓ E-Mail gespeichert</p>
+          </div>
+          <div class="settings-box">
+            <h3 class="settings-box-title">Passwort ändern</h3>
+            <div class="sf"><label class="sl">Neues Passwort</label><input class="si" id="s-pw1" type="password" placeholder="Mindestens 6 Zeichen"></div>
+            <div class="sf"><label class="sl">Bestätigen</label><input class="si" id="s-pw2" type="password" placeholder="Wiederholen"></div>
+            <button class="s-save-btn" onclick="saveSettings('password')">Ändern</button>
+            <p class="s-msg" id="msg-password">✓ Passwort geändert</p>
+          </div>
+          <div class="settings-box full">
+            <h3 class="settings-box-title">Öffnungszeiten</h3>
+            <div class="hrs-grid" id="hrsGrid"></div>
+            <button class="s-save-btn" style="margin-top:14px" onclick="saveSettings('hours')">Speichern</button>
+            <p class="s-msg" id="msg-hours">✓ Öffnungszeiten gespeichert</p>
+          </div>
+          <div class="settings-box full">
+            <h3 class="settings-box-title">SEO</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="sf"><label class="sl">Browser-Tab Titel</label><input class="si" id="s-seo-title" placeholder="Gaetano Reale Immobilien"></div>
+              <div class="sf"><label class="sl">Meta-Beschreibung</label><input class="si" id="s-seo-desc" placeholder="Exklusive Immobilien in Tübingen…"></div>
+            </div>
+            <button class="s-save-btn" onclick="saveSettings('seo')">Speichern</button>
+            <p class="s-msg" id="msg-seo">✓ SEO aktualisiert</p>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+
+  <!-- MOBILE TAB BAR -->
+  <div id="admTabBar">
+    <button class="tab-bar-btn active" data-view="overview">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span class="tab-bar-label">Übersicht</span>
+    </button>
+    <button class="tab-bar-btn" data-view="obj-new">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+      <span class="tab-bar-label">Hinzufügen</span>
+    </button>
+    <button class="tab-bar-btn" data-view="obj-list">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+      <span class="tab-bar-label">Objekte</span>
+    </button>
+    <button class="tab-bar-btn" data-view="settings">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <span class="tab-bar-label">Einstellungen</span>
+    </button>
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
 <script>
-/* ══════════════════ CONFIG ══════════════════ */
-const AU = 'reale', AP = '170709', SK = 'gr_final_v1';
+/* ══════════════════════════════════════════
+   SUPABASE CONFIG
+   → Diese zwei Werte nach Supabase-Setup eintragen
+══════════════════════════════════════════ */
+const SUPABASE_URL = 'DEINE_SUPABASE_URL';       // z.B. https://xyz.supabase.co
+const SUPABASE_KEY = 'DEIN_SUPABASE_ANON_KEY';   // aus Supabase Project Settings
 
-/* ══════════════════ DATA ════════════════════ */
-function load() {
-  try { return JSON.parse(localStorage.getItem(SK)) || seed(); }
-  catch { return seed(); }
+const ADMIN_USER = 'Gaetano Reale';
+const SUPABASE_READY = SUPABASE_URL !== 'DEINE_SUPABASE_URL';
+
+/* ── Supabase Helfer ── */
+async function sbFetch(path, options = {}) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': options.prefer || 'return=representation',
+      ...options.headers
+    },
+    ...options
+  });
+  if (!res.ok) throw new Error(await res.text());
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
 }
-function save(d) { localStorage.setItem(SK, JSON.stringify(d)); }
-function seed() {
+
+/* ── Objekte ── */
+async function dbGetObj() {
+  if (!SUPABASE_READY) return lsGetObj();
+  try {
+    const rows = await sbFetch('objekte?order=created_at.asc');
+    return rows.length ? rows : lsGetObj();
+  } catch { return lsGetObj(); }
+}
+
+async function dbSaveObj(list) {
+  if (!SUPABASE_READY) { lsStore('gr_obj', list); return; }
+  try {
+    // Upsert all objects
+    await sbFetch('objekte', {
+      method: 'POST',
+      prefer: 'resolution=merge-duplicates',
+      body: JSON.stringify(list)
+    });
+    lsStore('gr_obj', list); // local backup
+  } catch(e) { console.error('Supabase save error:', e); lsStore('gr_obj', list); }
+}
+
+async function dbDeleteObj(id) {
+  if (!SUPABASE_READY) { lsStore('gr_obj', lsGetObj().filter(o=>o.id!==id)); return; }
+  try {
+    await sbFetch(`objekte?id=eq.${id}`, { method: 'DELETE' });
+    lsStore('gr_obj', lsGetObj().filter(o=>o.id!==id));
+  } catch(e) { lsStore('gr_obj', lsGetObj().filter(o=>o.id!==id)); }
+}
+
+/* ── Config/Settings ── */
+async function dbGetCfg() {
+  if (!SUPABASE_READY) return lsGetCfg();
+  try {
+    const rows = await sbFetch('settings?key=eq.config');
+    if (rows && rows[0]) return { ...defaultCfg(), ...rows[0].value };
+    return lsGetCfg();
+  } catch { return lsGetCfg(); }
+}
+
+async function dbSaveCfg(cfg) {
+  if (!SUPABASE_READY) { lsStore('gr_cfg', cfg); return; }
+  try {
+    await sbFetch('settings', {
+      method: 'POST',
+      prefer: 'resolution=merge-duplicates',
+      body: JSON.stringify({ key: 'config', value: cfg })
+    });
+    lsStore('gr_cfg', cfg);
+  } catch { lsStore('gr_cfg', cfg); }
+}
+
+/* ── Passwort ── */
+async function dbGetPW() {
+  if (!SUPABASE_READY) return lsGetPW();
+  try {
+    const rows = await sbFetch('settings?key=eq.password');
+    if (rows && rows[0]) return rows[0].value;
+    return lsGetPW();
+  } catch { return lsGetPW(); }
+}
+
+async function dbSavePW(pw) {
+  if (!SUPABASE_READY) { lsStore('gr_pw', pw); return; }
+  try {
+    await sbFetch('settings', {
+      method: 'POST',
+      prefer: 'resolution=merge-duplicates',
+      body: JSON.stringify({ key: 'password', value: pw })
+    });
+    lsStore('gr_pw', pw);
+  } catch { lsStore('gr_pw', pw); }
+}
+
+/* ── Lokaler Fallback (wenn kein Supabase) ── */
+const lsLoad   = k => { try{ return JSON.parse(localStorage.getItem(k)); }catch{ return null; } };
+const lsStore  = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+const lsGetObj = () => lsLoad('gr_obj') || defaultObj();
+const lsGetCfg = () => lsLoad('gr_cfg') || defaultCfg();
+const lsGetPW  = () => lsLoad('gr_pw')  || '170709';
+
+/* ── Globaler State (wird beim Start geladen) ── */
+let STATE_OBJ = [];
+let STATE_CFG = defaultCfg();
+let STATE_PW  = '170709';
+
+async function loadAllData() {
+  [STATE_OBJ, STATE_CFG, STATE_PW] = await Promise.all([dbGetObj(), dbGetCfg(), dbGetPW()]);
+}
+
+// Sync-Wrapper für kompatiblen Code
+const getObj = () => STATE_OBJ;
+const getCfg = () => STATE_CFG;
+const getPW  = () => STATE_PW;
+
+function defaultObj(){
   return [
-    { id:'s1', name:'Villa Reutlinger Höhe', loc:'Tübingen-Lustnau', price:'1.485.000', status:'available', cat:'Neubau', area:'198', rooms:'5,5', year:'2025', desc:'Exklusive Neubauvilla in begehrter Hanglage mit Panoramablick über Tübingen. Hochwertige Ausstattung, Fußbodenheizung, Dachterrasse.', img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=85' },
-    { id:'s2', name:'Stadthaus Neckarblick', loc:'Tübingen-Süd', price:'745.000', status:'reserved', cat:'Sanierung', area:'112', rooms:'3,5', year:'2024', desc:'Stilvolle Sanierung eines Stadthauses mit Blick auf den Neckar. Neue Küche, Bäder, Böden.', img:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85' },
-    { id:'s3', name:'Doppelhaushälfte „Am Wald"', loc:'Rottenburg', price:'689.000', status:'available', cat:'Neubau', area:'142', rooms:'4,5', year:'2025', desc:'Ruhige Waldrandlage, modernes Energieeffizienzhaus, großer Garten.', img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=85' },
-    { id:'s4', name:'Wohnhof Belsenplatz', loc:'Mössingen', price:'ab 489.000', status:'available', cat:'Bauträger', area:'75–130', rooms:'2–4', year:'2026', desc:'6 Eigentumswohnungen im Neubau, barrierefreier Zugang, Tiefgarage.', img:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=85' },
-    { id:'s5', name:'Penthouse Wanneblick', loc:'Tübingen-Wanne', price:'1.150.000', status:'available', cat:'Penthouse', area:'138', rooms:'3,5', year:'2024', desc:'Exklusives Penthouse im 5. OG mit umlaufender Dachterrasse, Fernblick und luxuriöser Ausstattung.', img:'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1200&q=85' }
+    {id:'s1',name:'Moderne Wohnung im Herzen',loc:'Tübingen-Weststadt',price:'695.000',type:'kaufen',status:'verfügbar',cat:'Wohnung',area:'87',rooms:'3',year:'2019',floor:'3. OG',energy:'B / 78 kWh',extra:'3,57% Provision',features:['Balkon','Fußbodenheizung','Aufzug','TG-Stellplatz'],desc:'Helle Eigentumswohnung mit Balkon und Blick über die Altstadt. Hochwertige Ausstattung, Fußbodenheizung, TG-Stellplatz.',imgs:['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=85','https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&q=85'],isNew:true},
+    {id:'s2',name:'Stadthaus mit Garten',loc:'Tübingen-Derendingen',price:'1.180.000',type:'kaufen',status:'verfügbar',cat:'Haus',area:'165',rooms:'5,5',year:'2021',floor:'EG + OG',energy:'A / 42 kWh',extra:'Provisionsfrei',features:['Großer Garten','Doppelgarage','Pelletheizung','Einbauküche'],desc:'Modernes Stadthaus in ruhiger Lage, großer Garten, offene Küche, Pelletheizung, Doppelgarage.',imgs:['https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85'],isNew:false},
+    {id:'s3',name:'Penthouse Wanneblick',loc:'Tübingen-Wanne',price:'1.450.000',type:'kaufen',status:'reserviert',cat:'Penthouse',area:'138',rooms:'4',year:'2023',floor:'5. OG',energy:'A+ / 28 kWh',extra:'3,57% Provision',features:['Dachterrasse 360°','Designerküche','Smart Home','Sauna'],desc:'Exklusives Penthouse mit umlaufender Dachterrasse, Panoramablick und Designerküche.',imgs:['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=85','https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1200&q=85'],isNew:false},
+    {id:'s4',name:'Helle 2-Zimmer-Wohnung',loc:'Tübingen-Lustnau',price:'1.150 / Mo.',type:'mieten',status:'verfügbar',cat:'Wohnung',area:'58',rooms:'2',year:'2018',floor:'1. OG',energy:'C / 98 kWh',extra:'+ 120 € NK',features:['Einbauküche','Kellerabteil','TG-Stellplatz'],desc:'Gut geschnittene Mietwohnung, neue Einbauküche, Kellerabteil, TG-Stellplatz.',imgs:['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=85'],isNew:true},
+    {id:'s5',name:'Doppelhaushälfte Am Wald',loc:'Rottenburg am Neckar',price:'759.000',type:'kaufen',status:'verfügbar',cat:'Haus',area:'142',rooms:'5',year:'2024',floor:'EG + OG',energy:'A+ / 18 kWh',extra:'Provisionsfrei',features:['KfW 55','Süd-Terrasse','Garage','Photovoltaik'],desc:'Neubau in ruhiger Waldrandlage, KfW 55, große Süd-Terrasse, Garage.',imgs:['https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=85'],isNew:false}
   ];
 }
+function defaultCfg(){
+  return {
+    phone:'+49 7071 00 00 00', email:'info@reale-immobilien.de',
+    addr1:'Otto-Erbe-Weg 38', addr2:'72072 Tübingen',
+    fwd:'info@reale-immobilien.de', formspree:'',
+    firmStatus:'open', statusTxt:'',
+    hours:[{day:'Montag – Freitag',time:'09:00 – 18:00 Uhr'},{day:'Samstag',time:'10:00 – 14:00 Uhr'},{day:'Sonntag',time:'Nach Vereinbarung'}],
+    seoTitle:'Gaetano Reale Immobilien', seoDesc:'Exklusive Immobilien in Tübingen. Kaufen und Mieten.'
+  };
+}
 
-/* ══════════════════ INTRO ═══════════════════ */
-let introDone = false;
+/* ── INTRO ── */
+let siteReady = false;
 window.addEventListener('load', () => {
   setTimeout(() => {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('#intro', {
-      yPercent: -100, duration: 1.3, ease: 'expo.inOut',
-      onComplete() { document.getElementById('intro').style.display = 'none'; introDone = true; }
+    gsap.to('#intro', {yPercent:-100, duration:1.3, ease:'expo.inOut',
+      onComplete(){ document.getElementById('intro').style.display='none'; }
     });
-    setTimeout(heroIn, 420);
-  }, 3000);
+    setTimeout(boot, 400);
+  }, 3200);
 });
 
-function heroIn() {
+async function boot(){
+  siteReady = true;
+  await loadAllData();
   const nav = document.getElementById('nav');
-  nav.classList.add('dark-mode');
+  nav.classList.add('dark');
+
   // Hero words
-  gsap.utils.toArray('.hero-headline .hw').forEach((w, i) => {
-    gsap.fromTo(w, { y: '110%', opacity: 0 }, { y: 0, opacity: 1, duration: 1.4, delay: i * 0.11, ease: 'expo.out' });
-  });
-  gsap.from('.hero-tag',   { opacity:0, y:14, duration:1,   delay:.4,  ease:'expo.out' });
-  gsap.from('.hero-copy',  { opacity:0, y:20, duration:1.1, delay:.9,  ease:'expo.out' });
-  gsap.from('.hero-btns',  { opacity:0, y:20, duration:1.1, delay:1.05,ease:'expo.out' });
-  gsap.from('.hero-scroll-hint', { opacity:0, duration:.9, delay:1.4, ease:'expo.out' });
+  gsap.utils.toArray('.hw').forEach((el,i) =>
+    gsap.fromTo(el, {y:'108%',opacity:0}, {y:0,opacity:1,duration:1.35,delay:i*.12,ease:'expo.out'})
+  );
+  gsap.from('.h-eyebrow', {opacity:0,y:12,duration:.9,delay:.4,ease:'expo.out'});
+  gsap.from('.h-copy',    {opacity:0,y:18,duration:1, delay:.88,ease:'expo.out'});
+  gsap.from('.h-btns',    {opacity:0,y:18,duration:1, delay:.98,ease:'expo.out'});
+  gsap.from('.h-scroll',  {opacity:0,     duration:.8,delay:1.5, ease:'expo.out'});
 
-  // Parallax hero BG
-  gsap.to('#heroBg', {
-    yPercent: 22, ease: 'none',
-    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
-
-  // Nav dark/light
-  ScrollTrigger.create({
-    trigger: '#hero', start: 'bottom 80px',
-    onEnter:    () => { nav.classList.remove('dark-mode'); },
-    onLeaveBack:() => { nav.classList.add('dark-mode'); }
+  // Parallax
+  gsap.to('#heroBg', {yPercent:20, ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}
   });
 
-  // Scroll reveals
-  document.querySelectorAll('.reveal').forEach(el => {
-    ScrollTrigger.create({
-      trigger: el, start: 'top 87%',
-      onEnter: () => el.classList.add('in')
-    });
+  // Nav color switch
+  ScrollTrigger.create({trigger:'#hero', start:'bottom 70px',
+    onEnter:    () => nav.classList.remove('dark'),
+    onLeaveBack:() => nav.classList.add('dark')
   });
 
-  // Stat counters
-  document.querySelectorAll('.stat-n[data-to]').forEach(el => {
-    const to  = parseFloat(el.dataset.to);
-    const suf = el.dataset.suf || '';
-    ScrollTrigger.create({
-      trigger: el, start: 'top 85%',
-      onEnter() {
-        const obj = { v: 0 };
-        gsap.to(obj, { v: to, duration: 2, ease: 'power2.out', onUpdate() { el.textContent = Math.floor(obj.v) + suf; } });
-      }
-    });
-  });
+  // Why cards scroll reveal
+  gsap.utils.toArray('.why-card').forEach((el,i) =>
+    gsap.fromTo(el, {opacity:0,y:32}, {opacity:1,y:0,duration:.9,delay:i*.1,ease:'expo.out',
+      scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}
+    })
+  );
 
-  renderObj('all');
+  // General reveals
+  ['.about-cell','.about-text > *','.test-wrap','.why-title','.kt-title','.kt-info > *'].forEach(sel =>
+    gsap.utils.toArray(sel).forEach((el,i) =>
+      gsap.fromTo(el, {opacity:0,y:20}, {opacity:1,y:0,duration:.8,delay:i*.07,ease:'expo.out',
+        scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}
+      })
+    )
+  );
+
+  // Counters
+  document.querySelectorAll('[data-cnt]').forEach(el =>
+    ScrollTrigger.create({trigger:el, start:'top 85%', once:true, onEnter(){
+      const to = parseFloat(el.dataset.cnt), suf = el.dataset.suf || '';
+      let v = 0; const step = to/60;
+      const t = setInterval(() => { v = Math.min(v+step,to); el.textContent = Math.floor(v)+suf; if(v>=to) clearInterval(t); }, 18);
+    }})
+  );
+
+  renderObjects('all');
+  applyConfig();
+  applyTextEdits();
+  initImgSlots();
 }
 
-/* ══════════════════ NAV ═════════════════════ */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('solid', scrollY > 72);
-});
-
-const hbg = document.getElementById('hamburger');
-const mob = document.getElementById('mob-menu');
-hbg.addEventListener('click', () => { hbg.classList.toggle('open'); mob.classList.toggle('open'); });
-document.querySelectorAll('.mob-a').forEach(a => a.addEventListener('click', () => { hbg.classList.remove('open'); mob.classList.remove('open'); }));
-
-// Smooth anchors
-document.querySelectorAll('a[href^="#"]').forEach(a => {
+/* ── NAV ── */
+window.addEventListener('scroll', () =>
+  document.getElementById('nav').classList.toggle('glass', scrollY > 60)
+);
+const burgBtn = document.getElementById('burger');
+const mobMenu = document.getElementById('mobMenu');
+burgBtn.addEventListener('click', () => { burgBtn.classList.toggle('open'); mobMenu.classList.toggle('open'); });
+document.querySelectorAll('.mob-a').forEach(l => l.addEventListener('click', () => { burgBtn.classList.remove('open'); mobMenu.classList.remove('open'); }));
+document.querySelectorAll('a[href^="#"]').forEach(a =>
   a.addEventListener('click', e => {
     const t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); hbg.classList.remove('open'); mob.classList.remove('open'); }
-  });
-});
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); burgBtn.classList.remove('open'); mobMenu.classList.remove('open'); }
+  })
+);
 
-/* ══════════════════ OBJEKTE ════════════════ */
-let curFilter = 'all';
-let uploadedImg = null;
-
-document.getElementById('objFilters').addEventListener('click', e => {
-  const btn = e.target.closest('.flt');
-  if (!btn) return;
-  document.querySelectorAll('.flt').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  curFilter = btn.dataset.f;
-  renderObj(curFilter);
-});
-
-function statusInfo(s) {
-  if (s === 'sold')     return ['Verkauft',   'sold'];
-  if (s === 'reserved') return ['Reserviert', 'res'];
-  return ['Zum Verkauf', ''];
+/* ── STATUS BADGE ── */
+function applyStatusBadge(){
+  const c = getCfg();
+  const dot = document.getElementById('sbDot');
+  const txt = document.getElementById('sbText');
+  const kiS = document.getElementById('kiStatus');
+  const map = {
+    open:     {cls:'open',   label:'Geöffnet'},
+    closed:   {cls:'closed', label:'Geschlossen'},
+    busy:     {cls:'busy',   label:'Telefonisch besetzt'},
+    vacation: {cls:'busy',   label:'Im Urlaub'},
+    custom:   {cls:'busy',   label: c.statusTxt || 'Individuell'}
+  };
+  const info = map[c.firmStatus] || map.open;
+  dot.className = 'sb-dot ' + info.cls;
+  if(txt) txt.textContent = info.label;
+  if(kiS) kiS.textContent = info.label;
 }
 
-function renderObj(filter) {
+/* ── RENDER OBJECTS ── */
+let currentFilter = 'all';
+document.querySelectorAll('.tab-btn').forEach(btn =>
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    renderObjects(btn.dataset.f);
+  })
+);
+
+function getStatusTag(o){
+  if(o.status === 'verkauft')   return '<span class="obj-tag verkauft">Verkauft</span>';
+  if(o.status === 'reserviert') return '<span class="obj-tag reserviert">Reserviert</span>';
+  return '';
+}
+
+function renderObjects(filter){
+  currentFilter = filter;
   const grid = document.getElementById('objGrid');
   grid.innerHTML = '';
-  let list = load();
-  if (filter !== 'all') list = list.filter(o => o.cat === filter);
-  if (!list.length) { grid.innerHTML = '<p class="obj-empty">Keine Objekte in dieser Kategorie.</p>'; return; }
-  list.forEach((obj, i) => {
-    const [lbl, cls] = statusInfo(obj.status);
-    const el = document.createElement('div');
-    el.className = 'obj-card reveal';
-    el.style.transitionDelay = (i * .08) + 's';
-    el.innerHTML = `
-      <div class="obj-thumb">
-        <img src="${obj.img || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=75'}" alt="${obj.name}" loading="lazy">
-        <span class="obj-status ${cls}">${lbl}</span>
+  let list = getObj();
+  if(filter !== 'all') list = list.filter(o => o.type === filter);
+  if(!list.length){ grid.innerHTML = '<p class="obj-empty">Keine Objekte in dieser Kategorie.</p>'; return; }
+  list.forEach((o, i) => {
+    const card = document.createElement('div');
+    card.className = 'obj-card';
+    const mainImg = o.imgs?.[0] || '';
+    card.innerHTML = `
+      <div class="obj-img">
+        <img src="${mainImg}" alt="${o.name}" loading="lazy">
+        <span class="obj-tag ${o.type}">${o.type==='kaufen'?'Kaufen':'Mieten'}</span>
+        ${getStatusTag(o)}
+        ${o.isNew ? '<span class="obj-tag-new">Neu</span>' : ''}
+        ${o.imgs?.length > 1 ? `<span style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.55);color:#fff;font-size:9px;font-weight:600;padding:3px 8px;border-radius:999px">📷 ${o.imgs.length}</span>` : ''}
       </div>
       <div class="obj-info">
-        <p class="obj-loc">${obj.loc} · ${obj.cat}</p>
-        <h3 class="obj-name">${obj.name}</h3>
-        <div class="obj-row">
-          <span class="obj-price">€ ${obj.price}</span>
-          <span class="obj-meta">${obj.rooms ? obj.rooms+' Zi' : ''} ${obj.area ? '· '+obj.area+' m²' : ''}</span>
+        <p class="obj-loc">${o.loc} · ${o.cat}</p>
+        <h3 class="obj-name">${o.name}</h3>
+        <div class="obj-bottom">
+          <span class="obj-price">${o.type==='kaufen'?'€ ':''}${o.price}</span>
+          <span class="obj-meta">${o.rooms&&o.rooms!=='—'?o.rooms+' Zi':''} ${o.area?'· '+o.area+' m²':''}</span>
         </div>
       </div>`;
-    el.addEventListener('click', () => openObjDetail(obj));
-    grid.appendChild(el);
-    if (introDone) setTimeout(() => el.classList.add('in'), 60 + i * 80);
-    else el.classList.add('in');
+    card.addEventListener('click', () => openObjDetail(o));
+    if(siteReady){
+      gsap.set(card, {opacity:0,y:18});
+      grid.appendChild(card);
+      gsap.to(card, {opacity:1,y:0,duration:.65,delay:i*.06,ease:'expo.out'});
+    } else {
+      grid.appendChild(card);
+    }
   });
 }
 
-/* ══════════════════ OBJEKT DETAIL ══════════ */
-function openObjDetail(o) {
-  document.getElementById('omPhoto').src      = o.img || '';
-  document.getElementById('omLoc').textContent = o.loc + ' · ' + o.cat;
+/* ── OBJECT DETAIL MODAL ── */
+function openObjDetail(o){
+  const imgs = o.imgs?.length ? o.imgs : [];
+  document.getElementById('omMainImg').src = imgs[0] || '';
+
+  // Thumbnails
+  const thumbsEl = document.getElementById('omThumbs');
+  thumbsEl.innerHTML = '';
+  if(imgs.length > 1){
+    imgs.forEach((src, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'om-thumb' + (i===0?' active':'');
+      btn.innerHTML = `<img src="${src}" loading="lazy">`;
+      btn.addEventListener('click', () => {
+        const mainImg = document.getElementById('omMainImg');
+        mainImg.style.opacity = '0';
+        setTimeout(() => { mainImg.src = src; mainImg.style.opacity = '1'; }, 200);
+        thumbsEl.querySelectorAll('.om-thumb').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+      thumbsEl.appendChild(btn);
+    });
+  }
+
+  const stCls = 'st-' + o.status;
+  document.getElementById('omChips').innerHTML = [
+    `<span class="om-chip">${o.type==='kaufen'?'Kaufen':'Mieten'}</span>`,
+    `<span class="om-chip">${o.cat}</span>`,
+    `<span class="om-chip ${stCls}">${o.status.charAt(0).toUpperCase()+o.status.slice(1)}</span>`
+  ].join('');
   document.getElementById('omName').textContent = o.name;
-  document.getElementById('omPrice').textContent = '€ ' + o.price;
-  document.getElementById('omDesc').textContent  = o.desc || '';
-  document.getElementById('omFacts').innerHTML =
-    (o.rooms ? `<div class="om-fact"><strong>${o.rooms}</strong>Zimmer</div>` : '') +
-    (o.area  ? `<div class="om-fact"><strong>${o.area} m²</strong>Wohnfläche</div>` : '') +
-    (o.year  ? `<div class="om-fact"><strong>${o.year}</strong>Fertigstellung</div>` : '');
+  document.getElementById('omLoc').textContent  = o.loc;
+  document.getElementById('omDesc').textContent = o.desc || '';
+  document.getElementById('omFacts').innerHTML = [
+    o.area  ? `<div class="om-fact"><div class="om-fact-n">${o.area}</div><div class="om-fact-l">m²</div></div>` : '',
+    o.rooms && o.rooms!=='—' ? `<div class="om-fact"><div class="om-fact-n">${o.rooms}</div><div class="om-fact-l">Zimmer</div></div>` : '',
+    o.year  ? `<div class="om-fact"><div class="om-fact-n">${o.year}</div><div class="om-fact-l">Baujahr</div></div>` : '',
+    o.floor ? `<div class="om-fact"><div class="om-fact-n">${o.floor}</div><div class="om-fact-l">Lage</div></div>` : ''
+  ].filter(Boolean).join('');
+  document.getElementById('omFeatures').innerHTML = (o.features||[]).map(f=>`<span class="om-feature">${f}</span>`).join('');
+  const extras = [o.energy?`Energie: ${o.energy}`:'', o.extra?o.extra:''].filter(Boolean).join(' &nbsp;·&nbsp; ');
+  document.getElementById('omPrice').innerHTML = `${o.type==='kaufen'?'€ ':''}${o.price}${extras?`<div style="font-size:13px;color:var(--ink3);margin-top:6px;font-family:'DM Sans',sans-serif">${extras}</div>`:''}`;
   document.getElementById('objDetailModal').classList.add('open');
 }
-document.getElementById('omClose').addEventListener('click', () => document.getElementById('objDetailModal').classList.remove('open'));
-document.getElementById('omCta').addEventListener('click',  () => document.getElementById('objDetailModal').classList.remove('open'));
-document.getElementById('objDetailModal').addEventListener('click', e => { if (e.target === document.getElementById('objDetailModal')) document.getElementById('objDetailModal').classList.remove('open'); });
+document.getElementById('omCloseBtn').addEventListener('click', () => document.getElementById('objDetailModal').classList.remove('open'));
+document.getElementById('objDetailModal').addEventListener('click', e => { if(e.target===document.getElementById('objDetailModal')) document.getElementById('objDetailModal').classList.remove('open'); });
+document.getElementById('omCta').addEventListener('click', () => {
+  document.getElementById('objDetailModal').classList.remove('open');
+  document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
+});
 
-/* ══════════════════ KONTAKT FORM ════════════ */
+/* ── KONTAKT FORM ── */
 document.getElementById('ktForm').addEventListener('submit', e => {
   e.preventDefault();
-  const lbl = document.getElementById('ktBtnLabel');
-  lbl.textContent = 'Nachricht gesendet ✓';
-  setTimeout(() => { lbl.textContent = 'Nachricht senden'; e.target.reset(); }, 3500);
+  const lbl = document.getElementById('ktBtnLbl');
+  const fsp = getCfg().formspree;
+  if(fsp){
+    fetch(`https://formspree.io/f/${fsp}`, {method:'POST', body:new FormData(e.target), headers:{Accept:'application/json'}})
+      .then(() => { lbl.textContent = 'Gesendet ✓'; setTimeout(() => { lbl.textContent = 'Nachricht senden'; e.target.reset(); }, 3500); })
+      .catch(() => { lbl.textContent = 'Fehler – bitte anrufen'; });
+  } else {
+    lbl.textContent = 'Gesendet ✓';
+    setTimeout(() => { lbl.textContent = 'Nachricht senden'; e.target.reset(); }, 3500);
+  }
 });
 
-/* ══════════════════ LOGIN ═══════════════════ */
-const loginModal = document.getElementById('loginModal');
-document.getElementById('adminTrigger').addEventListener('click', () => {
-  loginModal.classList.add('open');
+/* ── CONFIG APPLY ── */
+function applyConfig(){
+  const c = getCfg();
+  const set = (id, txt, href) => { const el = document.getElementById(id); if(!el) return; el.textContent = txt; if(href) el.href = href; };
+  set('kiPhone', c.phone, 'tel:'+c.phone.replace(/\s/g,''));
+  set('kiEmail', c.email, 'mailto:'+c.email);
+  set('ftPhone', c.phone, 'tel:'+c.phone.replace(/\s/g,''));
+  set('ftEmail', c.email, 'mailto:'+c.email);
+  const addr = document.getElementById('kiAddr');
+  if(addr) addr.innerHTML = `${c.addr1}<br>${c.addr2}`;
+  if(c.seoTitle) document.getElementById('pageTitle').textContent = c.seoTitle;
+  if(c.seoDesc)  document.getElementById('metaDesc').setAttribute('content', c.seoDesc);
+  const hrs = document.getElementById('kiHrs');
+  if(hrs) hrs.innerHTML = (c.hours||[]).map(r=>`<div class="hr-r"><span>${r.day}</span><span>${r.time}</span></div>`).join('');
+  applyStatusBadge();
+}
+
+/* ── TEXT EDIT PERSISTENCE ── */
+function applyTextEdits(){
+  const c = getCnt();
+  document.querySelectorAll('[data-e]').forEach(el => { if(c[el.dataset.e]) el.innerHTML = c[el.dataset.e]; });
+}
+
+/* ══════════════════════════════════════
+   LOGIN
+══════════════════════════════════════ */
+document.getElementById('adminLoginBtn').addEventListener('click', openLoginModal);
+document.getElementById('lCancel').addEventListener('click', closeLoginModal);
+document.getElementById('loginModal').addEventListener('click', e => { if(e.target===document.getElementById('loginModal')) closeLoginModal(); });
+document.getElementById('lSubmit').addEventListener('click', submitLogin);
+document.getElementById('lPass').addEventListener('keydown', e => { if(e.key==='Enter') submitLogin(); });
+document.getElementById('lUser').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('lPass').focus(); });
+
+function openLoginModal(){
+  document.getElementById('lUser').value = '';
+  document.getElementById('lPass').value = '';
+  document.getElementById('lErr').style.display = 'none';
+  document.getElementById('loginModal').classList.add('open');
   setTimeout(() => document.getElementById('lUser').focus(), 80);
-});
-document.getElementById('lCancel').addEventListener('click', () => { loginModal.classList.remove('open'); document.getElementById('lErr').style.display = 'none'; });
-loginModal.addEventListener('click', e => { if (e.target === loginModal) { loginModal.classList.remove('open'); document.getElementById('lErr').style.display = 'none'; } });
-
-function doLogin() {
+}
+function closeLoginModal(){
+  document.getElementById('loginModal').classList.remove('open');
+  document.getElementById('lErr').style.display = 'none';
+}
+function submitLogin(){
   const u = document.getElementById('lUser').value.trim();
   const p = document.getElementById('lPass').value;
-  if (u === AU && p === AP) {
-    loginModal.classList.remove('open');
-    document.getElementById('lErr').style.display = 'none';
-    openDash();
+  if(u === ADMIN_USER && p === getPW()){
+    closeLoginModal();
+    showGreeting();
   } else {
     document.getElementById('lErr').style.display = 'block';
     document.getElementById('lPass').value = '';
     document.getElementById('lPass').focus();
   }
 }
-document.getElementById('lSubmit').addEventListener('click', doLogin);
-document.getElementById('lPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-document.getElementById('lUser').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('lPass').focus(); });
 
-/* ══════════════════ DASHBOARD ═══════════════ */
-function openDash() {
-  const d = document.getElementById('adminDash');
-  d.style.display = 'flex'; d.classList.add('open');
+/* ══════════════════════════════════════
+   ADMIN GREETING → PANEL
+══════════════════════════════════════ */
+function showGreeting(){
+  const g = document.getElementById('adminGreeting');
+  // Time-based greeting
+  const h = new Date().getHours();
+  const timeLabel = h < 12 ? 'Guten Morgen' : h < 18 ? 'Guten Tag' : 'Guten Abend';
+  document.getElementById('agTime').textContent = new Date().toLocaleDateString('de-DE', {weekday:'long', day:'numeric', month:'long'});
+  document.getElementById('agTitle').textContent = timeLabel + ', Gaetano.';
+  g.classList.add('show');
+  // After 2.2 seconds → slide out, show panel
+  setTimeout(() => {
+    gsap.to(g, {opacity:0, duration:.6, ease:'expo.out', onComplete(){ g.classList.remove('show'); g.style.opacity=''; openAdminPanel(); }});
+  }, 2200);
+}
+
+function openAdminPanel(){
+  const panel = document.getElementById('adminPanel');
+  panel.classList.add('show');
   document.body.style.overflow = 'hidden';
-  refreshDash();
+  switchView('overview');
 }
-function closeDash() {
-  const d = document.getElementById('adminDash');
-  d.classList.remove('open'); d.style.display = 'none';
+
+function closeAdminPanel(){
+  document.getElementById('adminPanel').classList.remove('show');
   document.body.style.overflow = '';
+  // Reset tab bar
+  document.querySelectorAll('.tab-bar-btn').forEach(b => b.classList.remove('active'));
+  const firstTab = document.querySelector('.tab-bar-btn[data-view="overview"]');
+  if(firstTab) firstTab.classList.add('active');
 }
-document.getElementById('dshLogout').addEventListener('click', closeDash);
 
-document.querySelectorAll('.dsh-nav-btn[data-p]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.dataset.p === 'gosite') { closeDash(); return; }
-    document.querySelectorAll('.dsh-nav-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.dsh-panel').forEach(p => p.classList.remove('show'));
-    document.getElementById('dp-' + btn.dataset.p).classList.add('show');
-    if (btn.dataset.p === 'list') refreshList();
-  });
-});
+document.getElementById('admViewSite').addEventListener('click', closeAdminPanel);
+document.getElementById('admLogout').addEventListener('click', closeAdminPanel);
 
-function refreshDash() {
-  const list = load();
-  const av = list.filter(o => o.status === 'available').length;
-  const re = list.filter(o => o.status === 'reserved').length;
-  const so = list.filter(o => o.status === 'sold').length;
-  document.getElementById('ovCards').innerHTML =
-    `<div class="ov-card"><div class="ov-n">${list.length}</div><div class="ov-l">Objekte gesamt</div></div>
-     <div class="ov-card"><div class="ov-n">${av}</div><div class="ov-l">Zum Verkauf</div></div>
-     <div class="ov-card"><div class="ov-n">${re}</div><div class="ov-l">Reserviert</div></div>
-     <div class="ov-card"><div class="ov-n">${so}</div><div class="ov-l">Verkauft</div></div>`;
+/* ══════════════════════════════════════
+   ADMIN PANEL NAVIGATION
+══════════════════════════════════════ */
+document.querySelectorAll('.adm-nav-item[data-view]').forEach(btn =>
+  btn.addEventListener('click', () => switchView(btn.dataset.view))
+);
+document.querySelectorAll('.tab-bar-btn[data-view]').forEach(btn =>
+  btn.addEventListener('click', () => switchView(btn.dataset.view))
+);
+
+function switchView(name){
+  // Sidebar
+  document.querySelectorAll('.adm-nav-item').forEach(b => b.classList.remove('active'));
+  const navBtn = document.querySelector(`.adm-nav-item[data-view="${name}"]`);
+  if(navBtn) navBtn.classList.add('active');
+  // Tab bar
+  document.querySelectorAll('.tab-bar-btn').forEach(b => b.classList.remove('active'));
+  const tabBtn = document.querySelector(`.tab-bar-btn[data-view="${name}"]`);
+  if(tabBtn) tabBtn.classList.add('active');
+  // Views
+  document.querySelectorAll('.adm-view').forEach(v => v.classList.remove('active'));
+  const view = document.getElementById('view-' + name);
+  if(view) view.classList.add('active');
+  const content = document.querySelector('.adm-content');
+  if(content) content.scrollTop = 0;
+  if(name === 'overview')  refreshOverview();
+  if(name === 'obj-list')  refreshObjList();
+  if(name === 'settings')  populateSettings();
+  if(name === 'obj-new')   { if(!document.getElementById('ofSave').dataset.editId) initImgSlots(); }
+}
+
+/* ── OVERVIEW ── */
+function refreshOverview(){
+  const list = getObj();
+  const kauf = list.filter(o=>o.type==='kaufen').length;
+  const miet = list.filter(o=>o.type==='mieten').length;
+  const res  = list.filter(o=>o.status==='reserviert').length;
+  const vkt  = list.filter(o=>o.status==='verkauft').length;
+  document.getElementById('statsRow').innerHTML = [
+    {n:list.length, l:'Gesamt'},
+    {n:kauf, l:'Kaufobjekte'},
+    {n:miet, l:'Mietobjekte'},
+    {n:res,  l:'Reserviert'},
+    {n:vkt,  l:'Verkauft'}
+  ].map(c=>`<div class="stat-card"><div class="stat-card-n">${c.n}</div><div class="stat-card-l">${c.l}</div></div>`).join('');
+
   const rg = document.getElementById('recentGrid');
   rg.innerHTML = '';
   list.slice(-4).reverse().forEach(o => {
     const el = document.createElement('div');
-    el.style.cssText = 'border:1px solid var(--rule);border-radius:8px;overflow:hidden;cursor:pointer;transition:box-shadow .3s';
-    el.onmouseenter = () => el.style.boxShadow = '0 8px 24px rgba(0,0,0,.1)';
-    el.onmouseleave = () => el.style.boxShadow = 'none';
-    el.innerHTML = `<div style="aspect-ratio:16/10;overflow:hidden;background:var(--cream2)"><img src="${o.img||''}" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:14px 16px"><p style="font-size:12.5px;font-weight:500;margin-bottom:3px">${o.name}</p><p style="font-size:10px;opacity:.48">€ ${o.price} · ${o.cat}</p></div>`;
-    el.addEventListener('click', () => { closeDash(); openObjDetail(o); });
+    el.className = 'recent-card';
+    el.innerHTML = `<div class="recent-img"><img src="${o.imgs?.[0]||''}" loading="lazy"></div><div class="recent-info"><p class="recent-name">${o.name}</p><p class="recent-meta">${o.type==='kaufen'?'€ ':''}${o.price} · ${o.cat}</p></div>`;
+    el.addEventListener('click', () => { closeAdminPanel(); openObjDetail(o); });
     rg.appendChild(el);
   });
 }
 
-function refreshList() {
-  const tbody = document.getElementById('tblBody');
+/* ── OBJECT LIST ── */
+function refreshObjList(){
+  const tbody = document.getElementById('objTableBody');
   tbody.innerHTML = '';
-  const list = load();
-  const sm = { available:'Zum Verkauf', reserved:'Reserviert', sold:'Verkauft' };
-  if (!list.length) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;opacity:.38;font-style:italic">Keine Objekte vorhanden.</td></tr>';
+  const list = getObj();
+  if(!list.length){
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:28px;color:var(--ink3)">Keine Objekte vorhanden.</td></tr>';
     return;
   }
   list.forEach(o => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td style="font-weight:500">${o.name}</td>
-      <td>${o.loc}</td>
-      <td style="font-family:'Fraunces',serif;font-size:14px;font-weight:200">€ ${o.price}</td>
-      <td>${o.cat}</td>
-      <td><span class="tbl-bdg ${o.status}">${sm[o.status]||o.status}</span></td>
+      <td style="font-weight:500;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${o.name}</td>
+      <td style="color:var(--ink2);font-size:12px">${o.loc}</td>
+      <td style="font-size:13px">${o.type==='kaufen'?'€ ':''}${o.price}</td>
+      <td><span class="list-badge ${o.type}">${o.type}</span></td>
       <td>
-        <button class="tbl-act" onclick="editObj('${o.id}')">Bearbeiten</button>
-        <button class="tbl-act del" onclick="delObj('${o.id}')">Löschen</button>
+        <select class="list-status-select" onchange="changeObjStatus('${o.id}', this.value)">
+          <option value="verfügbar"  ${o.status==='verfügbar'? 'selected':''}>Verfügbar</option>
+          <option value="reserviert" ${o.status==='reserviert'?'selected':''}>Reserviert</option>
+          <option value="verkauft"   ${o.status==='verkauft'?  'selected':''}>Verkauft</option>
+        </select>
+      </td>
+      <td>
+        <button class="list-action-btn" onclick="startEditObj('${o.id}')">Bearbeiten</button>
+        <button class="list-action-btn del" onclick="deleteObj('${o.id}')">Löschen</button>
       </td>`;
     tbody.appendChild(tr);
   });
 }
 
-function delObj(id) {
-  if (!confirm('Objekt wirklich löschen?')) return;
-  save(load().filter(o => o.id !== id));
-  refreshList(); refreshDash(); renderObj(curFilter);
+async function changeObjStatus(id, status){
+  const list = getObj();
+  const i = list.findIndex(o => o.id === id);
+  if(i !== -1){
+    list[i].status = status;
+    STATE_OBJ = list;
+    await dbSaveObj(list);
+    renderObjects(currentFilter);
+  }
 }
 
-function editObj(id) {
-  const o = load().find(x => x.id === id);
-  if (!o) return;
-  document.querySelectorAll('.dsh-nav-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector('[data-p="create"]').classList.add('active');
-  document.querySelectorAll('.dsh-panel').forEach(p => p.classList.remove('show'));
-  document.getElementById('dp-create').classList.add('show');
-  const fv = (id, val) => document.getElementById(id).value = val || '';
-  fv('f-name',   o.name);   fv('f-loc',  o.loc);
-  fv('f-price',  o.price);  fv('f-area', o.area);
-  fv('f-rooms',  o.rooms);  fv('f-year', o.year);
-  fv('f-desc',   o.desc);   fv('f-img',  o.img);
-  document.getElementById('f-status').value = o.status;
-  document.getElementById('f-cat').value    = o.cat;
-  document.getElementById('fSave').dataset.eid = id;
-  document.getElementById('fSave').textContent  = 'Änderungen speichern';
-  document.querySelector('.dsh-main').scrollTop = 0;
+async function deleteObj(id){
+  if(!confirm('Objekt wirklich löschen?')) return;
+  await dbDeleteObj(id);
+  STATE_OBJ = STATE_OBJ.filter(o => o.id !== id);
+  refreshObjList(); refreshOverview(); renderObjects(currentFilter);
 }
 
-/* ══════════════════ SAVE OBJECT ════════════ */
-document.getElementById('fSave').addEventListener('click', () => {
-  const name  = document.getElementById('f-name').value.trim();
-  const loc   = document.getElementById('f-loc').value.trim();
-  const price = document.getElementById('f-price').value.trim();
-  if (!name || !loc || !price) { alert('Bitte Name, Standort und Preis ausfüllen.'); return; }
-  const eid = document.getElementById('fSave').dataset.eid;
-  const obj = {
+function startEditObj(id){
+  const o = getObj().find(x => x.id === id);
+  if(!o) return;
+  switchView('obj-new');
+  document.getElementById('objFormTitle').textContent = 'Objekt bearbeiten';
+  const setV = (id, val) => { const el = document.getElementById(id); if(el) el.value = val||''; };
+  setV('of-name', o.name); setV('of-loc', o.loc); setV('of-price', o.price);
+  setV('of-area', o.area); setV('of-rooms', o.rooms); setV('of-year', o.year);
+  setV('of-floor', o.floor); setV('of-energy', o.energy||''); setV('of-extra', o.extra||'');
+  setV('of-features', (o.features||[]).join(', ')); setV('of-desc', o.desc||'');
+  document.getElementById('of-type').value   = o.type;
+  document.getElementById('of-status').value = o.status;
+  document.getElementById('of-cat').value    = o.cat || 'Wohnung';
+  document.getElementById('ofSave').dataset.editId = o.id;
+  document.getElementById('ofSave').textContent    = 'Änderungen speichern';
+  activeImgs = (o.imgs||[]).map(src => ({src, isFile: src.startsWith('data:')}));
+  renderImgSlots();
+}
+
+/* ── OBJECT FORM ── */
+let activeImgs = [];
+const MAX_PHOTOS = 8;
+
+function initImgSlots(){
+  if(!document.getElementById('ofSave').dataset.editId){
+    activeImgs = [];
+    document.getElementById('of-name').value = '';
+    document.getElementById('ofSave').dataset.editId = '';
+    document.getElementById('ofSave').textContent = 'Veröffentlichen';
+    document.getElementById('objFormTitle').textContent = 'Objekt hinzufügen';
+  }
+  renderImgSlots();
+}
+
+function renderImgSlots(){
+  const grid = document.getElementById('imgUploadGrid');
+  grid.innerHTML = '';
+  // Existing images
+  activeImgs.forEach((img, i) => {
+    const slot = document.createElement('div');
+    slot.className = 'img-upload-slot';
+    slot.innerHTML = `<img src="${img.src}" alt=""><button class="slot-del" onclick="removePhoto(${i})">×</button>`;
+    grid.appendChild(slot);
+  });
+  // Add slot
+  if(activeImgs.length < MAX_PHOTOS){
+    const add = document.createElement('div');
+    add.className = 'img-upload-slot';
+    add.innerHTML = `<input type="file" accept="image/*" id="photoFileIn"><span class="slot-plus">＋</span><span class="slot-label">Foto</span>`;
+    add.addEventListener('click', () => add.querySelector('input').click());
+    add.querySelector('input').addEventListener('change', function(){ addPhotoFile(this.files[0]); });
+    grid.appendChild(add);
+    // URL slot
+    if(activeImgs.length < MAX_PHOTOS - 1){
+      const urlSlot = document.createElement('div');
+      urlSlot.className = 'img-upload-slot';
+      urlSlot.style.cssText = 'flex-direction:column;justify-content:center;padding:8px;gap:6px';
+      urlSlot.innerHTML = `<span class="slot-label">URL</span><input type="url" placeholder="https://…" style="width:100%;font-size:10px;border:1px solid var(--g2);border-radius:6px;padding:4px 7px;background:var(--w);font-family:inherit" id="photoUrlIn">`;
+      urlSlot.querySelector('input').addEventListener('change', function(){ addPhotoUrl(this.value); this.value=''; });
+      urlSlot.addEventListener('click', e => e.stopPropagation());
+      grid.appendChild(urlSlot);
+    }
+  }
+}
+
+function removePhoto(i){ activeImgs.splice(i,1); renderImgSlots(); }
+function addPhotoUrl(url){ if(url && url.startsWith('http')){ activeImgs.push({src:url,isFile:false}); renderImgSlots(); } }
+function addPhotoFile(file){
+  if(!file || !file.type.startsWith('image/')) return;
+  const r = new FileReader();
+  r.onload = ev => { activeImgs.push({src:ev.target.result,isFile:true}); renderImgSlots(); };
+  r.readAsDataURL(file);
+}
+
+document.getElementById('ofSave').addEventListener('click', async () => {
+  const name  = document.getElementById('of-name').value.trim();
+  const loc   = document.getElementById('of-loc').value.trim();
+  const price = document.getElementById('of-price').value.trim();
+  if(!name || !loc || !price){ alert('Bitte Name, Standort und Preis ausfüllen.'); return; }
+
+  const btn = document.getElementById('ofSave');
+  btn.textContent = 'Speichert…'; btn.disabled = true;
+
+  const eid = btn.dataset.editId || '';
+  const feats = document.getElementById('of-features').value.split(',').map(f=>f.trim()).filter(Boolean);
+  const newObj = {
     id:     eid || 'o' + Date.now(),
     name, loc, price,
-    status: document.getElementById('f-status').value,
-    cat:    document.getElementById('f-cat').value,
-    area:   document.getElementById('f-area').value.trim(),
-    rooms:  document.getElementById('f-rooms').value.trim(),
-    year:   document.getElementById('f-year').value.trim(),
-    desc:   document.getElementById('f-desc').value.trim(),
-    img:    uploadedImg || document.getElementById('f-img').value.trim() || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=85'
+    type:   document.getElementById('of-type').value,
+    status: document.getElementById('of-status').value,
+    cat:    document.getElementById('of-cat').value,
+    area:   document.getElementById('of-area').value.trim(),
+    rooms:  document.getElementById('of-rooms').value.trim(),
+    year:   document.getElementById('of-year').value.trim(),
+    floor:  document.getElementById('of-floor').value.trim(),
+    energy: document.getElementById('of-energy').value.trim(),
+    extra:  document.getElementById('of-extra').value.trim(),
+    features: feats,
+    desc:   document.getElementById('of-desc').value.trim(),
+    imgs:   activeImgs.map(i=>i.src),
+    isNew:  !eid
   };
-  const list = load();
-  if (eid) { const i = list.findIndex(o => o.id === eid); if (i !== -1) list[i] = obj; }
-  else list.push(obj);
-  save(list); renderObj(curFilter); refreshDash();
-  document.getElementById('fSave').dataset.eid = '';
-  document.getElementById('fSave').textContent  = 'Objekt veröffentlichen';
-  document.getElementById('fReset').click();
-  const msg = document.getElementById('fMsg');
+
+  const list = getObj();
+  if(eid){
+    const idx = list.findIndex(o => o.id === eid);
+    if(idx !== -1) list[idx] = newObj; else list.push(newObj);
+  } else {
+    list.push(newObj);
+  }
+  STATE_OBJ = list;
+  await dbSaveObj(list);
+
+  renderObjects(currentFilter);
+  refreshOverview();
+
+  // Reset form
+  btn.dataset.editId = ''; btn.textContent = 'Veröffentlichen'; btn.disabled = false;
+  document.getElementById('objFormTitle').textContent = 'Objekt hinzufügen';
+  ['of-name','of-loc','of-price','of-area','of-rooms','of-year','of-floor','of-energy','of-extra','of-features','of-desc']
+    .forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('of-type').value   = 'kaufen';
+  document.getElementById('of-status').value = 'verfügbar';
+  document.getElementById('of-cat').value    = 'Wohnung';
+  activeImgs = []; renderImgSlots();
+
+  const msg = document.getElementById('ofMsg');
+  msg.textContent = eid ? '✓ Objekt aktualisiert — live für alle sichtbar.' : '✓ Objekt veröffentlicht — live für alle sichtbar.';
   msg.style.display = 'block';
-  msg.textContent = eid ? '✓ Änderungen gespeichert und live.' : '✓ Objekt veröffentlicht.';
-  setTimeout(() => msg.style.display = 'none', 3500);
+  setTimeout(() => msg.style.display = 'none', 4000);
 });
 
-document.getElementById('fReset').addEventListener('click', () => {
-  ['f-name','f-loc','f-price','f-area','f-rooms','f-year','f-desc','f-img'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
-  document.getElementById('f-status').value = 'available';
-  document.getElementById('f-cat').value    = 'Neubau';
-  document.getElementById('fSave').dataset.eid = '';
-  document.getElementById('fSave').textContent  = 'Objekt veröffentlichen';
-  document.getElementById('previewStrip').innerHTML = '';
-  uploadedImg = null;
+document.getElementById('ofCancel').addEventListener('click', () => {
+  document.getElementById('ofSave').dataset.editId = '';
+  document.getElementById('ofSave').textContent    = 'Veröffentlichen';
+  document.getElementById('objFormTitle').textContent = 'Objekt hinzufügen';
+  ['of-name','of-loc','of-price','of-area','of-rooms','of-year','of-floor','of-energy','of-extra','of-features','of-desc']
+    .forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('of-type').value   = 'kaufen';
+  document.getElementById('of-status').value = 'verfügbar';
+  document.getElementById('of-cat').value    = 'Wohnung';
+  activeImgs = []; renderImgSlots();
 });
 
-/* ══════════════════ IMAGE UPLOAD ════════════ */
-const uz = document.getElementById('uploadZone');
-const uf = document.getElementById('uploadFile');
-const ps = document.getElementById('previewStrip');
-
-uz.addEventListener('click', () => uf.click());
-uz.addEventListener('dragover', e => { e.preventDefault(); uz.classList.add('drag'); });
-uz.addEventListener('dragleave', () => uz.classList.remove('drag'));
-uz.addEventListener('drop', e => { e.preventDefault(); uz.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
-uf.addEventListener('change', () => handleFiles(uf.files));
-
-function handleFiles(files) {
-  Array.from(files).forEach(f => {
-    if (!f.type.startsWith('image/')) return;
-    const r = new FileReader();
-    r.onload = ev => {
-      uploadedImg = ev.target.result;
-      document.getElementById('f-img').value = '';
-      const item = document.createElement('div');
-      item.className = 'preview-item';
-      item.innerHTML = `<img src="${ev.target.result}" alt=""><button class="preview-rm" onclick="this.parentNode.remove();uploadedImg=null">×</button>`;
-      ps.appendChild(item);
-    };
-    r.readAsDataURL(f);
+/* ── SETTINGS ── */
+function populateSettings(){
+  const c = getCfg();
+  const setVal = (id, val) => { const el = document.getElementById(id); if(el) el.value = val||''; };
+  setVal('s-phone', c.phone); setVal('s-email', c.email);
+  setVal('s-addr1', c.addr1); setVal('s-addr2', c.addr2);
+  setVal('s-fwd', c.fwd); setVal('s-formspree', c.formspree||'');
+  const statusEl = document.getElementById('s-status');
+  if(statusEl) statusEl.value = c.firmStatus || 'open';
+  setVal('s-status-txt', c.statusTxt||'');
+  setVal('s-seo-title', c.seoTitle||''); setVal('s-seo-desc', c.seoDesc||'');
+  // Hours
+  const hg = document.getElementById('hrsGrid');
+  hg.innerHTML = '';
+  const rows = (c.hours||[]).concat([{day:'',time:''},{day:'',time:''},{day:'',time:''}]).slice(0,5);
+  rows.forEach((row, i) => {
+    hg.innerHTML += `
+      <div class="form-group" style="grid-column:unset"><label class="form-group label" style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px;display:block">Tag ${i+1}</label><input class="h-day si" data-i="${i}" value="${row.day}" placeholder="z.B. Montag – Freitag"></div>
+      <div class="form-group" style="grid-column:unset"><label style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px;display:block">Uhrzeit ${i+1}</label><input class="h-time si" data-i="${i}" value="${row.time}" placeholder="z.B. 09:00 – 18:00 Uhr"></div>`;
   });
 }
+
+async function saveSettings(section){
+  const c = { ...getCfg() };
+  if(section === 'contact'){
+    c.phone = document.getElementById('s-phone').value.trim();
+    c.email = document.getElementById('s-email').value.trim();
+    c.addr1 = document.getElementById('s-addr1').value.trim();
+    c.addr2 = document.getElementById('s-addr2').value.trim();
+  }
+  if(section === 'email'){
+    c.fwd       = document.getElementById('s-fwd').value.trim();
+    c.formspree = document.getElementById('s-formspree').value.trim();
+  }
+  if(section === 'status'){
+    c.firmStatus = document.getElementById('s-status').value;
+    c.statusTxt  = document.getElementById('s-status-txt').value.trim();
+  }
+  if(section === 'hours'){
+    const days  = document.querySelectorAll('.h-day');
+    const times = document.querySelectorAll('.h-time');
+    c.hours = Array.from(days).map((d,i) => ({day:d.value, time:times[i]?.value||''})).filter(r => r.day);
+  }
+  if(section === 'seo'){
+    c.seoTitle = document.getElementById('s-seo-title').value.trim();
+    c.seoDesc  = document.getElementById('s-seo-desc').value.trim();
+  }
+  if(section === 'password'){
+    const p1 = document.getElementById('s-pw1').value;
+    const p2 = document.getElementById('s-pw2').value;
+    if(p1.length < 6){ alert('Passwort muss mindestens 6 Zeichen lang sein.'); return; }
+    if(p1 !== p2){ alert('Passwörter stimmen nicht überein.'); return; }
+    STATE_PW = p1;
+    await dbSavePW(p1);
+    document.getElementById('s-pw1').value = '';
+    document.getElementById('s-pw2').value = '';
+    showSaveMsg('password'); return;
+  }
+  STATE_CFG = c;
+  await dbSaveCfg(c);
+  applyConfig();
+  showSaveMsg(section);
+}
+
+function showSaveMsg(section){
+  const el = document.getElementById('msg-' + section);
+  if(el){ el.style.display = 'block'; setTimeout(() => el.style.display = 'none', 2500); }
+}
+
+/* ── DOM READY ── */
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadAllData();
+  applyConfig();
+  applyTextEdits();
+  setTimeout(() => { if(!siteReady) renderObjects('all'); }, 3500);
+});
 </script>
 </body>
 </html>

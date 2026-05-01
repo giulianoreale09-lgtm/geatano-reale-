@@ -1,66 +1,80 @@
-# Gaetano Reale GmbH — Website
+# Gaetano Reale Immobilien
 
-Eine moderne, Apple-inspirierte Single-Page-Website für die Gaetano Reale GmbH, ein Bauunternehmen und Immobilienentwickler aus Tübingen.
+> Premium-Immobilienwebsite für Tübingen — Kaufen & Mieten.  
+> Reines HTML/CSS/JS. Kein Framework, kein Build-Tool. Einfach öffnen.
 
-## Projektstruktur
+---
 
-```
-gaetano-reale-website/
-├── index.html      # HTML-Struktur
-├── styles.css      # Eigene Styles + Responsive
-├── script.js       # GSAP-Animationen, Lenis, Interaktionen
-├── assets/
-│   └── images/     # Lokale Bilder (austauschbar)
-└── README.md       # Diese Datei
-```
+## 🚀 Starten
 
-## Tech-Stack
+`index.html` im Browser öffnen — fertig.
 
-- **HTML5** + semantische Struktur
-- **Tailwind CSS** (via CDN) für Utility-Klassen
-- **Eigenes CSS** (`styles.css`) für komplexe Animationen, Hover-Effekte, Responsive-Fixes
-- **Vanilla JavaScript** (`script.js`)
-- **GSAP + ScrollTrigger** für smooth Animationen
-- **Lenis** für butter-weiches Scrolling
-- **Fonts**: Fraunces (Display) + Inter Tight (Body) via Google Fonts
+### GitHub Pages aktivieren
+1. Repository auf GitHub hochladen
+2. **Settings → Pages → Branch: main → Save**
+3. Live unter `https://[username].github.io/[repo-name]`
 
-## Lokal starten
+---
 
-Einfach `index.html` im Browser öffnen. Es ist kein Build-Step erforderlich — alle externen Bibliotheken werden via CDN geladen.
+## 🔐 Admin-Login
 
-Für lokale Entwicklung mit Live-Reload:
+Kleines Personen-Icon oben rechts in der Navigation.
 
-```bash
-# Mit Python
-python3 -m http.server 8000
+| Feld | Wert |
+|------|------|
+| Benutzername | `Gaetano Reale` |
+| Passwort | `170709` |
 
-# Oder mit Node
-npx serve
-```
+> Passwort im Dashboard unter **Einstellungen → Passwort ändern** ändern.
 
-Dann `http://localhost:8000` aufrufen.
+Nach dem Login erscheint oben eine schwarze Admin-Leiste mit:
+- **Website bearbeiten** — alle Texte direkt auf der Seite klicken und ändern
+- **Dashboard öffnen** — alle weiteren Einstellungen
+- **Abmelden**
 
-## Deployment
+---
 
-Die Website ist statisch und kann auf jedem Hosting-Anbieter deployed werden:
+## ✨ Alle Features
 
-- **Vercel**: Drag & Drop des Ordners auf [vercel.com](https://vercel.com)
-- **Netlify**: Ordner auf [app.netlify.com/drop](https://app.netlify.com/drop) ziehen
-- **GitHub Pages**: Repo mit `index.html` im Root erstellen, Pages aktivieren
-- **FTP**: Alle Dateien auf den Webserver hochladen
+### Für Besucher
+- Intro-Splash-Animation beim ersten Laden
+- Apple-Style Design (Cormorant Garamond + DM Sans, alles rund)
+- GSAP Animationen (Hero, Parallax, Scroll-Reveals, Zähler)
+- Kaufen & Mieten Filter-Tabs
+- Objekt-Detailansicht mit Bildergalerie (bis zu 8 Fotos)
+- Firmenstatus-Badge unten rechts (Geöffnet/Geschlossen/etc.)
+- Kontaktformular (mit optionaler Formspree-Integration)
 
-## Vor dem Live-Gang anpassen
+### Admin-Panel
+- **Alle Website-Texte** inline bearbeiten (Bearbeitungsmodus)
+- **Objekte erstellen/bearbeiten:** bis zu 8 Fotos, Ausstattungsmerkmale, Energieausweis, Nebenkosten
+- **Status per Dropdown:** Verfügbar / Reserviert / Verkauft
+- **Kontaktdaten** verwalten (Telefon, E-Mail, Adresse)
+- **Firmenstatus** live ändern (Geöffnet, Geschlossen, Urlaub, eigener Text)
+- **Öffnungszeiten** bearbeiten
+- **E-Mail-Weiterleitung** konfigurieren + Formspree-ID
+- **SEO** (Seitentitel + Meta-Beschreibung)
+- **Passwort** ändern
 
-1. **Kontaktdaten** in `index.html`: Telefonnummer, E-Mail, Adresse (Platzhalter ersetzen)
-2. **Projektbilder**: Unsplash-URLs durch echte Projektfotos ersetzen (in `assets/images/` ablegen)
-3. **Impressum & Datenschutz**: Eigene Seiten erstellen und im Footer verlinken
-4. **Kontaktformular**: An Backend anbinden (z.B. Formspree, eigenen Endpoint)
-5. **Google Maps**: OpenStreetMap-iframe optional durch echtes Maps-Embed ersetzen
+---
 
-## Browser-Kompatibilität
+## 📧 Echte E-Mails aktivieren (Formspree)
 
-Modernste Browser (Chrome, Safari, Firefox, Edge ab den letzten zwei Major-Versionen). Smooth Scroll und Backdrop-Filter erfordern aktuelle Versionen.
+1. Kostenlosen Account auf [formspree.io](https://formspree.io) erstellen
+2. Neues Formular anlegen → Form-ID kopieren (z.B. `xpwzgkqb`)
+3. Im Admin-Panel → Einstellungen → E-Mail-Weiterleitung → Formspree Form-ID eintragen
+4. Fertig — alle Kontaktanfragen landen per E-Mail
 
-## Lizenz
+---
 
-© Gaetano Reale GmbH, Tübingen. Alle Rechte vorbehalten.
+## 📦 Abhängigkeiten (CDN, kein Download nötig)
+
+| Bibliothek | Version | Verwendung |
+|------------|---------|------------|
+| GSAP | 3.12.5 | Animationen |
+| GSAP ScrollTrigger | 3.12.5 | Scroll-Animationen |
+| Google Fonts | — | Cormorant Garamond, DM Sans |
+
+---
+
+*Gaetano Reale Immobilien · Otto-Erbe-Weg 38 · 72072 Tübingen*
